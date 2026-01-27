@@ -9,7 +9,7 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const NAV_LINKS = [
-        { name: "/about", href: "#" },
+        { name: "/about", href: "/about" },
         { name: "/projects", href: "#" },
         { name: "/writing", href: "#" },
     ];
