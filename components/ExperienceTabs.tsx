@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import experienceDataRaw from "../data/experiences.json";
+import experienceDataRaw from "@/data/experiences.json";
 
 type Category = "Work" | "Education";
 

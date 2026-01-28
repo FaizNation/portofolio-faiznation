@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import GalleryGrid from "../../components/GalleryGrid";
-import galleryData from "../../data/gallery.json";
+import GalleryGrid from "@/components/GalleryGrid";
+import galleryData from "@/data/gallery.json";
 
 interface GalleryItem {
   src: string;

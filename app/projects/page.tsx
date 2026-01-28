@@ -1,6 +1,6 @@
-import ProjectCard, { Project } from "../components/ProjectCard";
+import ProjectCard, { Project } from "@/components/ProjectCard";
 
-import projectsDataRaw from "../data/projects.json";
+import projectsDataRaw from "@/data/projects.json";
 
 const projects: Project[] = projectsDataRaw as Project[];
 

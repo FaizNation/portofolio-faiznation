@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import galleryData from "../data/gallery.json";
+import galleryData from "@/data/gallery.json";
 
 interface GalleryAlbum {
     title: string;

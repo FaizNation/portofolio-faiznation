@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import skillsDataRaw from "../data/skills.json";
+import skillsDataRaw from "@/data/skills.json";
 
 type Category = "Languages" | "Frameworks" | "Tools";
 

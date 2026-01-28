@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import achievementsData from "../data/achievements.json";
-import ImageModal from "../components/ImageModal";
+import achievementsData from "@/data/achievements.json";
+import ImageModal from "@/components/ImageModal";
+
 
 export default function Achievements() {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -78,7 +79,7 @@ export default function Achievements() {
                 imageAlt={selectedIndex !== null ? achievementsData[selectedIndex].title : ""}
                 caption={selectedIndex !== null ? achievementsData[selectedIndex].caption : undefined}
                 link={selectedIndex !== null ? achievementsData[selectedIndex].link : undefined}
-                onNext={() => { }} 
+                onNext={() => { }}
                 onPrev={() => { }}
                 showNavigation={false}
             />
