@@ -1,11 +1,76 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { signIn, signOut, useSession } from "next-auth/react";
+
+interface Comment {
+    id: string;
+    content: string;
+    createdAt: string;
+    user: {
+        name: string | null;
+        image: string | null;
+    };
+}
 
 export default function ChatWidget() {
+    const { data: session } = useSession();
     const [isOpen, setIsOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [inputValue, setInputValue] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const commentsEndRef = useRef<HTMLDivElement>(null);
+
+    const fetchComments = async () => {
+        try {
+            const res = await fetch("/api/comments");
+            if (res.ok) {
+                const data = await res.json();
+                setComments(data);
+            }
+        } catch (error) {
+            console.error("Failed to fetch comments", error);
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            fetchComments();
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (commentsEndRef.current) {
+            commentsEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [comments]);
+
+    const handleSend = async () => {
+        if (!inputValue.trim() || !session) return;
+
+        setIsLoading(true);
+        try {
+            const res = await fetch("/api/comments", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ content: inputValue }),
+            });
+
+            if (res.ok) {
+                const newComment = await res.json();
+                setComments([...comments, newComment]);
+                setInputValue("");
+            }
+        } catch (error) {
+            console.error("Failed to send comment", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <>
@@ -21,7 +86,7 @@ export default function ChatWidget() {
                             onClick={() => setIsLoginModalOpen(false)}
                             className="fixed inset-0 bg-black/50 backdrop-blur-sm"
                         />
-                        
+
                         {/* Modal Content */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -42,17 +107,23 @@ export default function ChatWidget() {
                             </div>
 
                             <div className="flex flex-col gap-3">
-                                <button className="w-full py-2.5 px-4 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-zinc-700 text-black dark:text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-3">
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.053-3.24 2.107-2.107 2.773-5.2 2.773-7.52 0-.48-.053-.96-.147-1.32h-10.68z"/></svg>
+                                <button
+                                    onClick={() => signIn("google")}
+                                    className="w-full py-2.5 px-4 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-zinc-700 text-black dark:text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-3"
+                                >
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.053-3.24 2.107-2.107 2.773-5.2 2.773-7.52 0-.48-.053-.96-.147-1.32h-10.68z" /></svg>
                                     Continue with Google
                                 </button>
-                                <button className="w-full py-2.5 px-4 bg-black dark:bg-white text-white dark:text-black hover:opacity-90 font-medium rounded-xl transition-opacity flex items-center justify-center gap-3">
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                <button
+                                    onClick={() => signIn("github")}
+                                    className="w-full py-2.5 px-4 bg-black dark:bg-white text-white dark:text-black hover:opacity-90 font-medium rounded-xl transition-opacity flex items-center justify-center gap-3"
+                                >
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
                                     Continue with GitHub
                                 </button>
                             </div>
 
-                            <button 
+                            <button
                                 onClick={() => setIsLoginModalOpen(false)}
                                 className="absolute top-4 right-4 text-gray-400 hover:text-black dark:hover:text-white transition-colors"
                             >
@@ -80,18 +151,28 @@ export default function ChatWidget() {
                             {/* Header */}
                             <div className="flex items-center justify-between p-4 border-b border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 backdrop-blur-md">
                                 <h3 className="font-semibold text-black dark:text-white">Discussion</h3>
-                                <button 
-                                    onClick={() => setIsOpen(false)}
-                                    className="text-gray-500 hover:text-black dark:hover:text-white transition-colors"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
+                                <div className="flex items-center gap-2">
+                                    {session && (
+                                        <button
+                                            onClick={() => signOut()}
+                                            className="text-xs text-red-500 hover:text-red-600 transition-colors mr-2"
+                                        >
+                                            Sign Out
+                                        </button>
+                                    )}
+                                    <button
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-gray-500 hover:text-black dark:hover:text-white transition-colors"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
 
-                            {/* Chat Body (Placeholder) */}
+                            {/* Chat Body */}
                             <div className="flex-1 p-4 overflow-y-auto min-h-[300px] flex flex-col gap-4 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
                                 <div className="flex flex-col gap-1 items-start">
                                     <span className="text-xs font-bold text-gray-500">System</span>
@@ -99,19 +180,59 @@ export default function ChatWidget() {
                                         Welcome! Feel free to leave a comment or feedback about my portfolio.
                                     </div>
                                 </div>
+                                {comments.map((comment) => (
+                                    <div
+                                        key={comment.id}
+                                        className={`flex flex-col gap-1 ${comment.user.name === session?.user?.name ? "items-end" : "items-start"}`}
+                                    >
+                                        <span className="text-xs font-bold text-gray-500">{comment.user.name || "Anonymous"}</span>
+                                        <div className={`rounded-lg px-3 py-2 text-sm ${comment.user.name === session?.user?.name ? "bg-black dark:bg-white text-white dark:text-black rounded-tr-none" : "bg-zinc-100 dark:bg-zinc-900 text-gray-700 dark:text-gray-300 rounded-tl-none"}`}>
+                                            {comment.content}
+                                        </div>
+                                    </div>
+                                ))}
+                                <div ref={commentsEndRef} />
                             </div>
 
-                            {/* Login Prompt Footer */}
+                            {/* Footer (Input or Login Prompt) */}
                             <div className="p-4 border-t border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 backdrop-blur-md">
-                                <div className="flex flex-col gap-3 items-center justify-center text-center">
-                                    <p className="text-xs text-gray-500">You must be logged in to join the discussion.</p>
-                                    <button 
-                                        onClick={() => setIsLoginModalOpen(true)}
-                                        className="w-full py-2 px-4 bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-lg hover:opacity-80 transition-opacity"
-                                    >
-                                        Sign in to Comment
-                                    </button>
-                                </div>
+                                {session ? (
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            value={inputValue}
+                                            onChange={(e) => setInputValue(e.target.value)}
+                                            onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
+                                            disabled={isLoading}
+                                            placeholder="Write a comment..."
+                                            className="flex-1 bg-white dark:bg-zinc-800 border-none rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none"
+                                        />
+                                        <button
+                                            onClick={handleSend}
+                                            disabled={isLoading || !inputValue.trim()}
+                                            className="p-2 bg-black dark:bg-white text-white dark:text-black rounded-lg disabled:opacity-50"
+                                        >
+                                            {isLoading ? (
+                                                <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                            ) : (
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                                </svg>
+                                            )}
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col gap-3 items-center justify-center text-center">
+                                        <p className="text-xs text-gray-500">You must be logged in to join the discussion.</p>
+                                        <button
+                                            onClick={() => setIsLoginModalOpen(true)}
+                                            className="w-full py-2 px-4 bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-lg hover:opacity-80 transition-opacity"
+                                        >
+                                            Sign in to Comment
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     )}
@@ -121,17 +242,25 @@ export default function ChatWidget() {
                 <motion.button
                     layoutId="chat-fab"
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-14 h-14 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
+                    className="w-14 h-14 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform overflow-hidden"
                 >
-                    {isOpen ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
+                    {session?.user?.image ? (
+                        <img
+                            src={session.user.image}
+                            alt={session.user.name || "User"}
+                            className="w-full h-full object-cover"
+                        />
                     ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
+                        isOpen ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        )
                     )}
                 </motion.button>
             </div>

@@ -5,6 +5,7 @@ import ClientLayout from "./components/ClientLayout";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
+import SessionProvider from "./components/SessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,14 +32,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden flex flex-col`}
       >
-        <ClientLayout>
-          <Navbar />
-          <main className="bg-white dark:bg-black flex-1 flex flex-col items-center justify-center pt-16">
-            {children}
-          </main>
-          <Footer />
-          <ChatWidget />
-        </ClientLayout>
+        <SessionProvider>
+          <ClientLayout>
+            <Navbar />
+            <main className="bg-white dark:bg-black flex-1 flex flex-col items-center justify-center pt-16">
+              {children}
+            </main>
+            <Footer />
+            <ChatWidget />
+          </ClientLayout>
+        </SessionProvider>
       </body>
     </html>
   );
