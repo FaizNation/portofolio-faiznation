@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "./ui/LoadingScreen";
+import ScrollToTop from "./ScrollToTop";
 
 export default function ClientLayout({
   children,
@@ -12,7 +13,6 @@ export default function ClientLayout({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Disable scrolling when loading
     if (isLoading) {
       document.body.style.overflow = "hidden";
     } else {
@@ -28,6 +28,7 @@ export default function ClientLayout({
         )}
       </AnimatePresence>
       {children}
+      <ScrollToTop />
     </>
   );
 }

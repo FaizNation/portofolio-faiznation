@@ -1,0 +1,50 @@
+[
+    {
+        "title": "Portfolio Website",
+        "description": "My personal digital garden and portfolio built with Next.js, Tailwind CSS, and Framer Motion.",
+        "tags": ["Next.js", "TypeScript", "Tailwind"],
+        "year": "2024",
+        "images": [
+            "https://placehold.co/600x400/png?text=Portfolio+Preview+1",
+            "https://placehold.co/600x400/png?text=Portfolio+Preview+2"
+        ],
+        "links": {
+            "github": "https://github.com/yourusername/portfolio",
+            "demo": "https://portfolio.com"
+        }
+    },
+    {
+        "title": "E-Commerce Dashboard",
+        "description": "A comprehensive dashboard for managing products, orders, and analytics for an online store.",
+        "tags": ["React", "Node.js", "PostgreSQL"],
+        "year": "2023",
+        "images": ["https://placehold.co/600x400/png?text=Dashboard+UI"],
+        "links": {
+            "github": "https://github.com/yourusername/dashboard",
+            "demo": "https://dashboard-demo.com"
+        }
+    },
+    {
+        "title": "Mobile Banking UI Kit",
+        "description": "A complete UI kit for a fintech mobile application, designed with accessibility in mind.",
+        "tags": ["Figma", "UI/UX", "Design System"],
+        "year": "2023",
+        "images": [
+            "https://placehold.co/600x400/png?text=Mobile+App+Home",
+            "https://placehold.co/600x400/png?text=Transfer+Flow"
+        ],
+        "links": {
+            "figma": "https://figma.com/file/...",
+            "demo": "https://figma.com/proto/..."
+        }
+    },
+    {
+        "title": "Weather Forecast CLI",
+        "description": "A command-line tool to fetch weather forecasts for any city using the OpenWeatherMap API.",
+        "tags": ["Rust", "API", "CLI"],
+        "year": "2022",
+        "links": {
+            "github": "https://github.com/yourusername/weather-cli"
+        }
+    }
+]

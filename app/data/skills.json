@@ -1,0 +1,26 @@
+{
+    "Languages": [
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "HTML5",
+        "CSS3",
+        "SQL"
+    ],
+    "Frameworks": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Node.js",
+        "Express",
+        "Prisma"
+    ],
+    "Tools": [
+        "Git",
+        "VS Code",
+        "Figma",
+        "Postman",
+        "Docker",
+        "Vercel"
+    ]
+}

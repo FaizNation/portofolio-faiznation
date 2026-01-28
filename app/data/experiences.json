@@ -1,0 +1,72 @@
+{
+  "Work": [
+    {
+      "organization": "Tech Company Inc.",
+      "location": "San Francisco, CA (Remote)",
+      "period": "2024 - Present",
+      "companyDescription": "A leading provider of cloud-based solutions for enterprise businesses.",
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "responsibilities": [
+            "Architected the main client-facing dashboard reducing load times by 40%",
+            "Collaborated with cross-functional teams to deliver high-quality software solutions",
+            "Mentored junior developers and conducted code reviews"
+          ]
+        },
+        {
+          "title": "Frontend Developer",
+          "responsibilities": [
+            "Architected the main client-facing dashboard reducing load times by 40%",
+            "Collaborated with cross-functional teams to deliver high-quality software solutions",
+            "Mentored junior developers and conducted code reviews"
+          ]
+        }
+      ]
+    },
+    {
+      "organization": "StartUp Studio",
+      "location": "Jakarta, Indonesia",
+      "period": "2023 - 2024",
+      "companyDescription": "A fast-paced startup incubator building next-gen fintech products.",
+      "roles": [
+        {
+          "title": "Frontend Developer Intern",
+          "responsibilities": [
+            "Implemented responsive designs using Tailwind CSS",
+            "Fixed critical UI bugs in the payment flow",
+            "Participated in daily stand-ups and agile rituals"
+          ]
+        }
+      ]
+    }
+  ],
+  "Education": [
+    {
+      "organization": "University of Technology",
+      "location": "Yogyakarta, Indonesia",
+      "period": "2020 - 2024",
+      "companyDescription": "",
+      "roles": [
+        {
+          "title": "",
+          "responsibilities": []
+        }
+      ]
+    },
+    {
+      "organization": "City High School",
+      "location": "Central Java, Indonesia",
+      "period": "2017 - 2020",
+      "roles": [
+        {
+          "title": "High School Diploma - Science Major",
+          "responsibilities": [
+            "Participated in various math and science olympiads",
+            "President of the Robotics Club"
+          ]
+        }
+      ]
+    }
+  ]
+}

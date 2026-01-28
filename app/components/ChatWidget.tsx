@@ -18,10 +18,32 @@ export default function ChatWidget() {
     const { data: session } = useSession();
     const [isOpen, setIsOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
     const [comments, setComments] = useState<Comment[]>([]);
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const commentsEndRef = useRef<HTMLDivElement>(null);
+    const chatContainerRef = useRef<HTMLDivElement>(null);
+    const fabRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                isOpen &&
+                chatContainerRef.current &&
+                !chatContainerRef.current.contains(event.target as Node) &&
+                fabRef.current &&
+                !fabRef.current.contains(event.target as Node)
+            ) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
 
     const fetchComments = async () => {
         try {
@@ -137,6 +159,60 @@ export default function ChatWidget() {
                 )}
             </AnimatePresence>
 
+            {/* Logout Confirmation Modal */}
+            <AnimatePresence>
+                {isLogoutModalOpen && (
+                    <div className="fixed inset-0 z-[110] flex items-center justify-center px-4">
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsLogoutModalOpen(false)}
+                            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+                        />
+
+                        {/* Modal Content */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                            className="relative w-full max-w-sm bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-2xl shadow-xl p-6 flex flex-col gap-6 z-[111]"
+                        >
+                            <div className="flex flex-col items-center gap-2 text-center">
+                                <div className="p-3 bg-red-100 dark:bg-red-900/30 rounded-full text-red-600 dark:text-red-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-bold text-black dark:text-white">Sign Out</h3>
+                                <p className="text-gray-500 text-sm">Are you sure you want to sign out? You won't be able to leave comments.</p>
+                            </div>
+
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setIsLogoutModalOpen(false)}
+                                    className="flex-1 py-2.5 px-4 bg-gray-100 dark:bg-zinc-800 text-black dark:text-white font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        signOut();
+                                        setIsLogoutModalOpen(false);
+                                    }}
+                                    className="flex-1 py-2.5 px-4 bg-red-600 text-white font-medium rounded-xl hover:bg-red-700 transition-colors"
+                                >
+                                    Sign Out
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+
             {/* Chat Widget Container */}
             <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
                 <AnimatePresence>
@@ -146,7 +222,8 @@ export default function ChatWidget() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             transition={{ duration: 0.2 }}
-                            className="w-80 md:w-96 height-auto max-h-[500px] bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-2xl shadow-xl flex flex-col overflow-hidden"
+                            ref={chatContainerRef}
+                            className="w-[calc(100vw-3rem)] md:w-96 height-auto max-h-[500px] bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-2xl shadow-xl flex flex-col overflow-hidden"
                         >
                             {/* Header */}
                             <div className="flex items-center justify-between p-4 border-b border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 backdrop-blur-md">
@@ -154,7 +231,7 @@ export default function ChatWidget() {
                                 <div className="flex items-center gap-2">
                                     {session && (
                                         <button
-                                            onClick={() => signOut()}
+                                            onClick={() => setIsLogoutModalOpen(true)}
                                             className="text-xs text-red-500 hover:text-red-600 transition-colors mr-2"
                                         >
                                             Sign Out
@@ -180,17 +257,68 @@ export default function ChatWidget() {
                                         Welcome! Feel free to leave a comment or feedback about my portfolio.
                                     </div>
                                 </div>
-                                {comments.map((comment) => (
-                                    <div
-                                        key={comment.id}
-                                        className={`flex flex-col gap-1 ${comment.user.name === session?.user?.name ? "items-end" : "items-start"}`}
-                                    >
-                                        <span className="text-xs font-bold text-gray-500">{comment.user.name || "Anonymous"}</span>
-                                        <div className={`rounded-lg px-3 py-2 text-sm ${comment.user.name === session?.user?.name ? "bg-black dark:bg-white text-white dark:text-black rounded-tr-none" : "bg-zinc-100 dark:bg-zinc-900 text-gray-700 dark:text-gray-300 rounded-tl-none"}`}>
-                                            {comment.content}
+
+                                {comments.map((comment, index) => {
+                                    const isMe = comment.user.name === session?.user?.name;
+                                    const showAvatar = !isMe && (index === 0 || comments[index - 1].user.name !== comment.user.name);
+
+                                    return (
+                                        <div
+                                            key={comment.id}
+                                            className={`flex gap-2 ${isMe ? "justify-end" : "justify-start"}`}
+                                        >
+                                            {/* Avatar for others */}
+                                            {!isMe && (
+                                                <div className="w-8 h-8 flex-shrink-0 flex flex-col justify-end">
+                                                    {showAvatar ? (
+                                                        comment.user.image ? (
+                                                            <img
+                                                                src={comment.user.image}
+                                                                alt={comment.user.name || "User"}
+                                                                className="w-8 h-8 rounded-full object-cover shadow-sm"
+                                                            />
+                                                        ) : (
+                                                            <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs font-bold text-gray-600">
+                                                                {comment.user.name?.[0] || "?"}
+                                                            </div>
+                                                        )
+                                                    ) : <div className="w-8" />}
+                                                </div>
+                                            )}
+
+                                            {/* Message Bubble */}
+                                            <div
+                                                className={`
+                                                    max-w-[75%] rounded-lg px-3 py-1.5 shadow-sm relative text-sm group
+                                                    ${isMe
+                                                        ? "bg-black dark:bg-white text-white dark:text-black rounded-tr-none"
+                                                        : "bg-white dark:bg-zinc-800 text-black dark:text-white rounded-tl-none border border-black/5 dark:border-white/5"
+                                                    }
+                                                `}
+                                            >
+                                                {/* Sender Name (only for others in group context) */}
+                                                {!isMe && showAvatar && (
+                                                    <p className="text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-0.5 leading-none">
+                                                        {comment.user.name || "Anonymous"}
+                                                    </p>
+                                                )}
+
+                                                <div className="flex flex-col">
+                                                    <span className="break-words whitespace-pre-wrap leading-tight">{comment.content}</span>
+                                                    <span className={`text-[10px] self-end mt-1 ml-2 opacity-70`}>
+                                                        {new Date(comment.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                    </span>
+                                                </div>
+
+                                                {/* Triangle Tail */}
+                                                <div className={`absolute top-0 w-0 h-0 border-[6px] border-transparent ${isMe
+                                                    ? "right-[-6px] border-t-black dark:border-t-white border-r-0"
+                                                    : "left-[-6px] border-t-white dark:border-t-zinc-800 border-l-0"
+                                                    }`} />
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                                 <div ref={commentsEndRef} />
                             </div>
 
@@ -240,6 +368,7 @@ export default function ChatWidget() {
 
                 {/* Floating Action Button */}
                 <motion.button
+                    ref={fabRef}
                     layoutId="chat-fab"
                     onClick={() => setIsOpen(!isOpen)}
                     className="w-14 h-14 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform overflow-hidden"

@@ -10,8 +10,8 @@ export default function Navbar() {
 
     const NAV_LINKS = [
         { name: "/about", href: "/about" },
-        { name: "/projects", href: "#" },
-        { name: "/writing", href: "#" },
+        { name: "/projects", href: "/projects" },
+        { name: "/writing", href: "/writing" },
     ];
 
     return (

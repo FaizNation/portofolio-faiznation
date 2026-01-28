@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "life-at-office",
+    "title": "Life at Office",
+    "year": "2024",
+    "items": [
+      {
+        "src": "https://placehold.co/600x400/png?text=Office+1",
+        "alt": "Team meeting",
+        "caption": "Weekly sync"
+      },
+      {
+        "src": "https://placehold.co/400x600/png?text=Office+2",
+        "alt": "Workstation",
+        "caption": "My desk setup",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://placehold.co/600x400/png?text=Office+3",
+        "alt": "Coffee break",
+        "caption": "Coffee time"
+      },
+      {
+        "src": "https://placehold.co/600x400/png?text=Office+4",
+        "alt": "Whiteboard",
+        "caption": "Brainstorming"
+      }
+    ]
+  },
+  {
+    "slug": "mountain-hiking",
+    "title": "Mountain Hiking",
+    "year": "2023",
+    "items": [
+      {
+        "src": "https://placehold.co/600x400/png?text=Mountain+1",
+        "alt": "Summit",
+        "caption": "At the peak"
+      },
+      {
+        "src": "https://placehold.co/600x800/png?text=Mountain+2",
+        "alt": "Trail",
+        "caption": "The long path up",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://placehold.co/600x400/png?text=Mountain+3",
+        "alt": "Camping",
+        "caption": "Base camp"
+      }
+    ]
+  },
+  {
+    "slug": "tech-conference",
+    "title": "Tech Conference",
+    "year": "2023",
+    "items": [
+      {
+        "src": "https://placehold.co/600x400/png?text=Conf+1",
+        "alt": "Stage",
+        "caption": "Keynote speech"
+      },
+      {
+        "src": "https://placehold.co/600x400/png?text=Conf+2",
+        "alt": "Networking",
+        "caption": "Meeting new people"
+      },
+      {
+        "src": "https://placehold.co/600x400/png?text=Conf+3",
+        "alt": "Workshop",
+        "caption": "Hands-on session"
+      }
+    ]
+  },
+  {
+    "slug": "japan-trip",
+    "title": "Japan Trip",
+    "year": "2022",
+    "items": [
+      {
+        "src": "https://placehold.co/600x400/png?text=Japan+1",
+        "alt": "Tokyo",
+        "caption": "Shibuya Crossing"
+      },
+      {
+        "src": "https://placehold.co/400x600/png?text=Japan+2",
+        "alt": "Kyoto",
+        "caption": "Fushimi Inari",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://placehold.co/600x400/png?text=Japan+3",
+        "alt": "Food",
+        "caption": "Ramen night"
+      }
+    ]
+  }
+]
