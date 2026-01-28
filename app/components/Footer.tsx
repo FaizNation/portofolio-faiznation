@@ -3,7 +3,8 @@ export default async function Footer() {
     let commitUrl = "#";
 
     try {
-        const res = await fetch("https://api.github.com/repos/FaizNation/portofolio-faiznation/commits?per_page=1", {
+        const commitApiUrl = process.env.GITHUB_COMMITS_URL || "";
+        const res = await fetch(commitApiUrl, {
             cache: "no-store",
         });
         if (res.ok) {
@@ -21,7 +22,7 @@ export default async function Footer() {
         <footer className="w-full flex justify-center bg-zinc-50 dark:bg-black py-8">
             <div className="w-full max-w-3xl px-16 flex flex-col items-center gap-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 border-t border-black/10 dark:border-white/10 pt-8">
 
-                <div className="flex items-center gap-6 font-medium">
+                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 font-medium">
                     <div className="flex items-center gap-2">
                         <span>crafted w/</span>
                         <a
