@@ -2,17 +2,31 @@
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler"
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const NAV_LINKS = [
-        { name: "/about", href: "/about" },
-        { name: "/projects", href: "/projects" },
-        { name: "/writing", href: "/writing" },
+        { name: "About", href: "/about" },
+        { name: "Projects", href: "/projects" },
+        { name: "Writing", href: "/writing" },
     ];
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                setIsSearchOpen(true);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
 
     return (
         <>
@@ -80,7 +94,10 @@ export default function Navbar() {
                 {/* Right: Search Bar & Mobile Menu Toggle */}
                 <div className="flex items-center gap-4">
                     <div className="relative group hidden md:block">
-                        <button className="flex items-center gap-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full px-4 py-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 hover:bg-black/10 dark:hover:bg-white/10 transition-all outline-none w-64 justify-between">
+                        <button
+                            onClick={() => setIsSearchOpen(true)}
+                            className="flex items-center gap-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full px-4 py-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 hover:bg-black/10 dark:hover:bg-white/10 transition-all outline-none w-64 justify-between"
+                        >
                             <span>Search...</span>
                             <kbd className="hidden md:inline-flex h-5 items-center gap-1 rounded border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-1.5 font-mono text-[10px] font-medium text-gray-600 dark:text-gray-400">
                                 <span className="text-xs">⌘</span>K
@@ -93,7 +110,10 @@ export default function Navbar() {
                     </div>
 
                     {/* Search Icon for Mobile */}
-                    <button className="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">
+                    <button
+                        onClick={() => setIsSearchOpen(true)}
+                        className="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                    >
                         <svg
                             className="w-5 h-5"
                             fill="none"
@@ -172,6 +192,9 @@ export default function Navbar() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Search Bar Modal */}
+            <SearchBar isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>
     );
 }

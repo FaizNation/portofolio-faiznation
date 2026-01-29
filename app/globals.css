@@ -128,3 +128,11 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
+
+*{
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
