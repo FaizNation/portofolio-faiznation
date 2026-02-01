@@ -73,23 +73,23 @@
     ]
   },
   {
-    "slug": "japan-trip",
-    "title": "Japan Trip",
-    "year": "2022",
+    "slug": "pingfest-2025",
+    "title": "Pingfest 2025",
+    "year": "2025",
     "items": [
       {
-        "src": "https://placehold.co/600x400/png?text=Japan+1",
+        "src": "https://drive.google.com/file/d/1lBgCW7pI3Q8Iwu3U8NcWYTOYdhKyhEZu/view?usp=sharing",
         "alt": "Tokyo",
         "caption": "Shibuya Crossing"
       },
       {
-        "src": "https://placehold.co/400x600/png?text=Japan+2",
+        "src": "https://drive.google.com/file/d/1lBgCW7pI3Q8Iwu3U8NcWYTOYdhKyhEZu/view?usp=drive_link",
         "alt": "Kyoto",
         "caption": "Fushimi Inari",
         "span": "row-span-2"
       },
       {
-        "src": "https://placehold.co/600x400/png?text=Japan+3",
+        "src": "https://drive.google.com/file/d/1lBgCW7pI3Q8Iwu3U8NcWYTOYdhKyhEZu/view?usp=drive_link",
         "alt": "Food",
         "caption": "Ramen night"
       }

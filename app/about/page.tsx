@@ -25,14 +25,14 @@ export default function About() {
           <h2 className="text-xl font-bold text-black dark:text-white">Connect</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <Link
-              href="mailto:fadlyfaiz88@gmail.com"
+              href="mailto:fadlyfaisfajarruddin@gmail.com"
               className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors group"
             >
               <Mail className="w-5 h-5" />
               <span className="underline decoration-dashed group-hover:decoration-solid underline-offset-4 decoration-1">Email</span>
             </Link>
             <Link
-              href="https://instagram.com/fadlyfaiz"
+              href="https://www.instagram.com/faiz_natioon/"
               target="_blank"
               className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors group"
             >
@@ -40,7 +40,7 @@ export default function About() {
               <span className="underline decoration-dashed group-hover:decoration-solid underline-offset-4 decoration-1">Instagram</span>
             </Link>
             <Link
-              href="https://linkedin.com/in/fadly-faiz"
+              href="https://www.linkedin.com/in/fadly-fais-fajarruddin/"
               target="_blank"
               className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors group"
             >
@@ -48,7 +48,7 @@ export default function About() {
               <span className="underline decoration-dashed group-hover:decoration-solid underline-offset-4 decoration-1">LinkedIn</span>
             </Link>
             <Link
-              href="https://facebook.com/fadlyfaiz"
+              href="https://www.facebook.com/fadly.faiz.716"
               target="_blank"
               className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors group"
             >

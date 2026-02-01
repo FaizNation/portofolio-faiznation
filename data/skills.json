@@ -1,26 +1,29 @@
 {
     "Languages": [
-        "TypeScript",
+        "Java",
         "JavaScript",
         "Python",
         "HTML5",
         "CSS3",
-        "SQL"
+        "SQL",
+        "Dart",
+        "PHP"
     ],
     "Frameworks": [
         "Next.js",
         "React",
         "Tailwind CSS",
         "Node.js",
-        "Express",
-        "Prisma"
+        "Flutter",
+        "Laravel"
     ],
     "Tools": [
         "Git",
         "VS Code",
         "Figma",
         "Postman",
-        "Docker",
-        "Vercel"
+        "Vercel",
+        "Antigravity",
+        "Android Studio"
     ]
 }

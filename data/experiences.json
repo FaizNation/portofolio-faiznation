@@ -1,41 +1,25 @@
 {
   "Work": [
     {
-      "organization": "Tech Company Inc.",
-      "location": "San Francisco, CA (Remote)",
-      "period": "2024 - Present",
-      "companyDescription": "A leading provider of cloud-based solutions for enterprise businesses.",
+      "organization": "Diginesa",
+      "location": "Magetan, Jawa Timur (Remote)",
+      "period": "2025 - Present",
+      "companyDescription": "Diginesa is a digital transformation platform that offers innovative solutions and digital education to accelerate technological advancement in Indonesia. .",
       "roles": [
         {
-          "title": "Software Engineer",
+          "title": "Lead UI/UX Designer",
           "responsibilities": [
-            "Architected the main client-facing dashboard reducing load times by 40%",
-            "Collaborated with cross-functional teams to deliver high-quality software solutions",
-            "Mentored junior developers and conducted code reviews"
+            "Leading the UI/UX design team",
+            "Collaborating with cross-functional teams to deliver high-quality software solutions",
+            "becoming a speaker at a mini UI/UX bootcamp event."
           ]
         },
         {
           "title": "Frontend Developer",
           "responsibilities": [
             "Architected the main client-facing dashboard reducing load times by 40%",
-            "Collaborated with cross-functional teams to deliver high-quality software solutions",
-            "Mentored junior developers and conducted code reviews"
-          ]
-        }
-      ]
-    },
-    {
-      "organization": "StartUp Studio",
-      "location": "Jakarta, Indonesia",
-      "period": "2023 - 2024",
-      "companyDescription": "A fast-paced startup incubator building next-gen fintech products.",
-      "roles": [
-        {
-          "title": "Frontend Developer Intern",
-          "responsibilities": [
-            "Implemented responsive designs using Tailwind CSS",
-            "Fixed critical UI bugs in the payment flow",
-            "Participated in daily stand-ups and agile rituals"
+            "Collaborated with cross-functional teams to deliver high-quality software solutions"
+            
           ]
         }
       ]
@@ -43,9 +27,9 @@
   ],
   "Education": [
     {
-      "organization": "University of Technology",
-      "location": "Yogyakarta, Indonesia",
-      "period": "2020 - 2024",
+      "organization": "State University of Surabaya",
+      "location": "Surabaya, Indonesia",
+      "period": "2024 - Present",
       "companyDescription": "",
       "roles": [
         {
@@ -55,15 +39,14 @@
       ]
     },
     {
-      "organization": "City High School",
-      "location": "Central Java, Indonesia",
-      "period": "2017 - 2020",
+      "organization": "Jumapolo State High School",
+      "location": "Karanganyar, Indonesia",
+      "period": "2021 - 2024",
       "roles": [
         {
-          "title": "High School Diploma - Science Major",
+          "title": "",
           "responsibilities": [
-            "Participated in various math and science olympiads",
-            "President of the Robotics Club"
+            
           ]
         }
       ]

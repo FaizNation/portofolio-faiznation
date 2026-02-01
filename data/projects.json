@@ -39,9 +39,9 @@
         }
     },
     {
-        "title": "Weather Forecast CLI",
-        "description": "A command-line tool to fetch weather forecasts for any city using the OpenWeatherMap API.",
-        "tags": ["Rust", "API", "CLI"],
+        "title": "ShariaEconomy.ID",
+        "description": "This website is the result of a midterm project for the Islamic Education.",
+        "tags": ["Bootstrap", "HTML", "CSS", "JS"],
         "year": "2022",
         "links": {
             "github": "https://github.com/yourusername/weather-cli"
