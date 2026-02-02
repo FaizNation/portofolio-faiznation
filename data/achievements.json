@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "title": "Best Employee of the Year",
-    "year": "2023",
-    "imageSrc": "https://placehold.co/600x400/png?text=Best+Employee",
-    "caption": "Awarded for outstanding performance",
-    "link": "https://example.com/certificate/1"
+    "title": "Intro to Software Engineering",
+    "year": "2024",
+    "imageSrc": "https://drive.google.com/uc?export=view&id=1F3M4QhcG68daBAv5f2nlzaADvJ1fJ16M",
+    "caption": "a 2 weeks certified online course offered by RevoU",
+    "link": "https://drive.google.com/file/d/1F3M4QhcG68daBAv5f2nlzaADvJ1fJ16M/view?usp=sharing"
   },
   {
     "id": 2,
-    "title": "Hackathon Winner",
-    "year": "2022",
-    "imageSrc": "https://placehold.co/600x400/png?text=Hackathon+Winner",
-    "caption": "First place in National Tech Hackathon",
-    "link": "https://example.com/certificate/2"
+    "title": "Imphnen",
+    "year": "2024",
+    "imageSrc": "https://drive.google.com/uc?export=view&id=1nfu_NQLSAto71l1VJmUfGAVVYgYAA86h",
+    "caption": "Ingin menjadi programer handal namun enggan ngoding",
+    "link": "https://drive.google.com/file/d/1nfu_NQLSAto71l1VJmUfGAVVYgYAA86h/view?usp=drive_link"
   },
   {
     "id": 3,
-    "title": "Certified Cloud Architect",
-    "year": "2022",
-    "imageSrc": "https://placehold.co/600x400/png?text=Certificate",
-    "caption": "Professional Certification",
-    "link": "https://example.com/certificate/3"
+    "title": "Figma camp Indonesia batch 5",
+    "year": "2025",
+    "imageSrc": "https://drive.google.com/uc?export=view&id=1BpV7yoJTprozPy2bvFwamSetKUPBQpJB",
+    "caption": "UI/UX with Figma",
+    "link": "https://drive.google.com/file/d/1BpV7yoJTprozPy2bvFwamSetKUPBQpJB/view?usp=drive_link"
   }
 ]

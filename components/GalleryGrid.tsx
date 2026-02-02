@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import ImageModal from "./ImageModal";
 
 export interface GalleryItem {
@@ -36,13 +37,21 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
                         onClick={() => openModal(index)}
                         className={`relative group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 cursor-pointer ${item.span || ""}`}
                     >
-                        <motion.img
-                            src={item.src}
-                            alt={item.alt}
+
+                        <motion.div
+                            className="w-full h-full relative"
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.5 }}
-                            className="w-full h-full object-cover"
-                        />
+                        >
+                            <Image
+                                src={item.src}
+                                alt={item.alt}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                priority={index < 4}
+                            />
+                        </motion.div>
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
 
                         {item.caption && (

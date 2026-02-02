@@ -1,8 +1,45 @@
 [
     {
-        "title": "Portfolio Website",
-        "description": "My personal digital garden and portfolio built with Next.js, Tailwind CSS, and Framer Motion.",
-        "tags": ["Next.js", "TypeScript", "Tailwind"],
+        "title": "Kost Finder",
+        "description": "A website to find kost around campus, project from Diginesa",
+        "tags": [
+            "Flutter",
+            "Dart",
+            "Tailwind"
+        ],
+        "year": "2024",
+        "images": [
+            "https://placehold.co/600x400/png?text=Portfolio+Preview+1",
+            "https://placehold.co/600x400/png?text=Portfolio+Preview+2"
+        ],
+        "links": {
+            "demo": "https://portfolio.com"
+        }
+    },
+    {
+        "title": "Kost Finder UI/UX",
+        "description": "A UI/UX design for a website to find kost around campus, project from Diginesa",
+        "tags": [
+            "Figma",
+            "UI/UX"
+        ],
+        "year": "2024",
+        "images": [
+            "https://placehold.co/600x400/png?text=Portfolio+Preview+1",
+            "https://placehold.co/600x400/png?text=Portfolio+Preview+2"
+        ],
+        "links": {
+            "figma": "https://www.figma.com/design/3qSxSUOqpXs10tJprbvrge/Kost-Finder?m=auto&t=JYTICMoZR1gFMqh2-6"
+        }
+    },
+    {
+        "title": "Portfolio Website V1",
+        "description": "My first personal website to show my projects and achievements.",
+        "tags": [
+            "Next.js",
+            "TypeScript",
+            "Tailwind"
+        ],
         "year": "2024",
         "images": [
             "https://placehold.co/600x400/png?text=Portfolio+Preview+1",
@@ -14,34 +51,43 @@
         }
     },
     {
-        "title": "E-Commerce Dashboard",
-        "description": "A comprehensive dashboard for managing products, orders, and analytics for an online store.",
-        "tags": ["React", "Node.js", "PostgreSQL"],
+        "title": "Mango-apps",
+        "description": "Comic reading apps using flutter with rest api by me",
+        "tags": [
+            "Flutter",
+            "Rest API",
+            "Dart"
+        ],
         "year": "2023",
-        "images": ["https://placehold.co/600x400/png?text=Dashboard+UI"],
+        "images": [
+            "https://placehold.co/600x400/png?text=Dashboard+UI"
+        ],
         "links": {
-            "github": "https://github.com/yourusername/dashboard",
+            "github": "https://github.com/FaizNation/mango",
             "demo": "https://dashboard-demo.com"
         }
     },
     {
-        "title": "Mobile Banking UI Kit",
-        "description": "A complete UI kit for a fintech mobile application, designed with accessibility in mind.",
-        "tags": ["Figma", "UI/UX", "Design System"],
-        "year": "2023",
-        "images": [
-            "https://placehold.co/600x400/png?text=Mobile+App+Home",
-            "https://placehold.co/600x400/png?text=Transfer+Flow"
+        "title": "Komiku-scraper-go",
+        "description": "a web scraper for komiku.id using golang",
+        "tags": [
+            "Go",
+            "Web Scraper"
         ],
+        "year": "2025",
         "links": {
-            "figma": "https://figma.com/file/...",
-            "demo": "https://figma.com/proto/..."
+            "github": "https://github.com/FaizNation/komiku-scraper-go"
         }
     },
     {
         "title": "ShariaEconomy.ID",
         "description": "This website is the result of a midterm project for the Islamic Education.",
-        "tags": ["Bootstrap", "HTML", "CSS", "JS"],
+        "tags": [
+            "Bootstrap",
+            "HTML",
+            "CSS",
+            "JS"
+        ],
         "year": "2022",
         "links": {
             "github": "https://github.com/yourusername/weather-cli"

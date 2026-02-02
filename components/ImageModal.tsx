@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
+import Image from "next/image";
 
 interface ImageModalProps {
     isOpen: boolean;
@@ -124,10 +125,8 @@ export default function ImageModal({
                         onClick={(e) => e.stopPropagation()}
                     >
                         <AnimatePresence mode="popLayout" initial={false}>
-                            <motion.img
+                            <motion.div
                                 key={imageSrc}
-                                src={imageSrc}
-                                alt={imageAlt}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
@@ -143,8 +142,17 @@ export default function ImageModal({
                                         onPrev();
                                     }
                                 }}
-                                className="max-h-full max-w-full object-contain rounded-md shadow-2xl cursor-grab active:cursor-grabbing"
-                            />
+                                className="relative w-full h-full cursor-grab active:cursor-grabbing"
+                            >
+                                <Image
+                                    src={imageSrc}
+                                    alt={imageAlt}
+                                    fill
+                                    className="object-contain rounded-md shadow-2xl"
+                                    sizes="100vw"
+                                    priority
+                                />
+                            </motion.div>
                         </AnimatePresence>
 
                         {caption && (

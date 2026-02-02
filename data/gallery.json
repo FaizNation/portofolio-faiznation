@@ -1,74 +1,173 @@
 [
   {
-    "slug": "life-at-office",
-    "title": "Life at Office",
-    "year": "2024",
+    "slug": "recode-2026",
+    "title": "Re:Code 2026",
+    "year": "2026",
     "items": [
       {
-        "src": "https://placehold.co/600x400/png?text=Office+1",
-        "alt": "Team meeting",
-        "caption": "Weekly sync"
+        "src": "https://drive.google.com/uc?export=view&id=1CYTT4kyhAMzB-BNwEU-nvzVvBgAt5Il6",
+        "alt": "Photo with Pak Dika",
+        "caption": "Photo with Pak Dika"
       },
       {
-        "src": "https://placehold.co/400x600/png?text=Office+2",
-        "alt": "Workstation",
-        "caption": "My desk setup",
+        "src": "https://drive.google.com/uc?export=view&id=1H2kfDIO9TH-dwuqiBIFT9O2IJ3ch3GBS",
+        "alt": "Meet framework Prabogo",
+        "caption": "Meet framework Prabogo",
         "span": "row-span-2"
       },
       {
-        "src": "https://placehold.co/600x400/png?text=Office+3",
-        "alt": "Coffee break",
-        "caption": "Coffee time"
+        "src": "https://drive.google.com/uc?export=view&id=16wgkatCXz7uNj_l2ITvf1sDEomZNuxTi",
+        "alt": "Theodore mangowal",
+        "caption": "Theodore mangowal"
       },
       {
-        "src": "https://placehold.co/600x400/png?text=Office+4",
-        "alt": "Whiteboard",
-        "caption": "Brainstorming"
+        "src": "https://drive.google.com/uc?export=view&id=1Fptj7o-y1Pskkx3K_vZkl94kGj3lA68f",
+        "alt": "Fini Charisa",
+        "caption": "Fini Charisa",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1dk4RrTBcG-_95FC8DA5IzinM3xIuOjz2",
+        "alt": "Setia budi",
+        "caption": "Setia budi",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1Y7U6hcQtRiix-_--HZ9LWHRKORwTm-E_",
+        "alt": "Setia budi",
+        "caption": "Setia budi",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1cx7HUA_lrKOYS4qyfW-tB0b-S7dEilEN",
+        "alt": "W/ egin",
+        "caption": "W/ egin"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=14Vjd12gPje_75z3X9Ubs5n9rzx069YHm",
+        "alt": "w/ Theodore",
+        "caption": "w/ Theodore",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1O2YdHwz-huIbcgTLOe6pN52HFXozSMDx",
+        "alt": "W/ egin",
+        "caption": "W/ egin"
       }
     ]
   },
   {
-    "slug": "mountain-hiking",
-    "title": "Mountain Hiking",
-    "year": "2023",
+    "slug": "devfest-jogjakarta-2025",
+    "title": "Devfest Jogjakarta 2025",
+    "year": "2025",
     "items": [
       {
-        "src": "https://placehold.co/600x400/png?text=Mountain+1",
-        "alt": "Summit",
-        "caption": "At the peak"
-      },
-      {
-        "src": "https://placehold.co/600x800/png?text=Mountain+2",
-        "alt": "Trail",
-        "caption": "The long path up",
+        "src": "https://drive.google.com/uc?export=view&id=1iBqTvZiB-TulbHiHBv00fIT3wN-69FjV",
+        "alt": "Devfest Jogjakarta 2025",
+        "caption": "Jogjakarta 2025",
         "span": "row-span-2"
       },
       {
-        "src": "https://placehold.co/600x400/png?text=Mountain+3",
-        "alt": "Camping",
-        "caption": "Base camp"
+        "src": "https://drive.google.com/uc?export=view&id=1g4AgtVUeiuDRPRVxPRK_hGf_MAw7BDWb",
+        "alt": " Merchandise Devfest Jogjakarta 2025",
+        "caption": "Merchandise Devfest Jogjakarta 2025"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1165baCqcqCtZ1EXGo9IJi65FmHYDXeJa",
+        "alt": "All speaker Devfest Jogjakarta 2025",
+        "caption": "All speaker Devfest Jogjakarta 2025"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=16WpSngzhZblxv_Rl6hEz_bVFYlCVCTG1",
+        "alt": "Devfest Jogjakarta 2025",
+        "caption": "Devfest Jogjakarta "
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1CanBdHapwjdrd3IkGp_5Y8A-BSRBuAR1",
+        "alt": "Devfest Jogjakarta 2025",
+        "caption": "Web Devfest Jogjakarta 2025",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1aTuFgWtGGCqmoVpcwKVucDzb47zWXY-f",
+        "alt": "Devfest Jogjakarta 2025",
+        "caption": "Devfest  2025",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1tPWBGrWPZ_YkcTcI7LPFikG0BLI5l5GL",
+        "alt": "Devfest Jogjakarta 2025",
+        "caption": "Devfest Jogjakarta 2025",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=18rTyyJ6jwkfo3-CtYLOe1PUULA_L8V3K",
+        "alt": "Devfest Jogjakarta 2025",
+        "caption": "Devfest Jogjakarta 2025",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1yGyF5myL7Plu4jFRZptJAWvhr72LcuVS",
+        "alt": "Tawangmangu",
+        "caption": "Tawangmangu",
+        "span": "row-span-2"
       }
     ]
   },
   {
-    "slug": "tech-conference",
-    "title": "Tech Conference",
-    "year": "2023",
+    "slug": "devfest-semarang-2025",
+    "title": "Devfest Semarang 2025",
+    "year": "2025",
     "items": [
       {
-        "src": "https://placehold.co/600x400/png?text=Conf+1",
+        "src": "https://drive.google.com/uc?export=view&id=1P60x5EOMzwjtqgvXWQGRCoU1OfuJ6d7Y",
         "alt": "Stage",
         "caption": "Keynote speech"
       },
       {
-        "src": "https://placehold.co/600x400/png?text=Conf+2",
+        "src": "https://drive.google.com/uc?export=view&id=1JPFhCnqJzQ16fcNFQNe0mX5Za53oRkyH",
         "alt": "Networking",
-        "caption": "Meeting new people"
+        "caption": "Meeting new people",
+        "span": "row-span-2"
       },
       {
-        "src": "https://placehold.co/600x400/png?text=Conf+3",
+        "src": "https://drive.google.com/uc?export=view&id=1_3Ux_afS9gTXQ_I19aSCfqXkiTdMy2LA",
+        "alt": "Workshop",
+        "caption": "Hands-on session",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=177jm9TJNOS7Z2F6GR3lInzyoAmoCN9rw",
+        "alt": "Workshop",
+        "caption": "Hands-on session",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1Q9Jt1t14yu4UDU6BfnhKsnKEwkvB4jTU",
         "alt": "Workshop",
         "caption": "Hands-on session"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1Uoy0cpJzvz8vLBRsEW2XS8nVCQ_3IBET",
+        "alt": "Workshop",
+        "caption": "Hands-on session"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1AQ-zlRUGtXMdrvhuM0gE4l-hgwGE3bXP",
+        "alt": "Workshop",
+        "caption": "Hands-on session",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1sTdcqymmdQxhOZ3R4hIokXwPS19PiKUC",
+        "alt": "Workshop",
+        "caption": "Hands-on session"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1xc4wda93PJJGC3F5deiuHRva-ist4uwD",
+        "alt": "Workshop",
+        "caption": "Hands-on session",
+        "span": "row-span-2"
       }
     ]
   },
@@ -78,20 +177,14 @@
     "year": "2025",
     "items": [
       {
-        "src": "https://drive.google.com/file/d/1lBgCW7pI3Q8Iwu3U8NcWYTOYdhKyhEZu/view?usp=sharing",
-        "alt": "Tokyo",
-        "caption": "Shibuya Crossing"
+        "src": "https://drive.google.com/uc?export=view&id=1lBgCW7pI3Q8Iwu3U8NcWYTOYdhKyhEZu",
+        "alt": "with pak sandika galih",
+        "caption": "with pak sandika galih"
       },
       {
-        "src": "https://drive.google.com/file/d/1lBgCW7pI3Q8Iwu3U8NcWYTOYdhKyhEZu/view?usp=drive_link",
-        "alt": "Kyoto",
-        "caption": "Fushimi Inari",
-        "span": "row-span-2"
-      },
-      {
-        "src": "https://drive.google.com/file/d/1lBgCW7pI3Q8Iwu3U8NcWYTOYdhKyhEZu/view?usp=drive_link",
-        "alt": "Food",
-        "caption": "Ramen night"
+        "src": "https://drive.google.com/uc?export=view&id=1R-I2IM6KIesIImKEok0NziE3A_JQCaQO",
+        "alt": "with pak sandika galih",
+        "caption": "with pak sandika galih"
       }
     ]
   }
