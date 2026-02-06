@@ -254,7 +254,7 @@ export default function ChatWidget() {
                                 <div className="flex flex-col gap-1 items-start">
                                     <span className="text-xs font-bold text-gray-500">System</span>
                                     <div className="bg-zinc-100 dark:bg-zinc-900 rounded-lg rounded-tl-none px-3 py-2 text-sm text-gray-700 dark:text-gray-300">
-                                        Welcome! Feel free to leave a comment or feedback about my portfolio.
+                                        Welcome! Feel free to leave a comment or feedback about my portfolio. and please comment respectfully as chats cannot be edited or deleted.
                                     </div>
                                 </div>
 
@@ -306,7 +306,7 @@ export default function ChatWidget() {
                                                 <div className="flex flex-col">
                                                     <span className="break-words whitespace-pre-wrap leading-tight">{comment.content}</span>
                                                     <span className={`text-[10px] self-end mt-1 ml-2 opacity-70`}>
-                                                        {new Date(comment.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                        {new Date(comment.createdAt).toLocaleDateString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                                                     </span>
                                                 </div>
 

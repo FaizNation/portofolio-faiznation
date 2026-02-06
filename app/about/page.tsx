@@ -14,9 +14,13 @@ export default function About() {
         <div className="flex flex-col gap-6 text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
           <p>
             Okay, let's do this one last time. For real this time. My name is Fadly Faiz Fajarruddin.
+            I was born in karanganyar, Central Java, and I'm a 19 year old. I am a student at the State University of Surabaya, majoring in Informatics Engineering.
           </p>
           <p>
-            I was born in karanganyar, Central Java, and I'm a 19 year old.
+            I focus on UI/UX Design and Frontend Development. I am a person who is passionate about technology and always curious to learn new things. I am also a person who is responsible and always tries to do my best in everything I do.
+          </p>
+          <p>
+            Curious about my full professional journey? Take a look at my <Link href="/Curriculum Vitae_Fadly Fais Fajarruddin.pdf" target="_blank" className="underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1 text-black dark:text-white transition-colors">career</Link>.
           </p>
 
         </div>
@@ -25,7 +29,7 @@ export default function About() {
           <h2 className="text-xl font-bold text-black dark:text-white">Connect</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <Link
-              href="mailto:fadlyfaisfajarruddin@gmail.com"
+              href="mailto:fadlyfaizfajarruddin@gmail.com"
               className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors group"
             >
               <Mail className="w-5 h-5" />

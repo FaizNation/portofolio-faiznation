@@ -4,16 +4,16 @@
         "description": "A website to find kost around campus, project from Diginesa",
         "tags": [
             "Flutter",
-            "Dart",
-            "Tailwind"
+            "Dart"
         ],
-        "year": "2024",
+        "year": "2025",
         "images": [
-            "https://placehold.co/600x400/png?text=Portfolio+Preview+1",
-            "https://placehold.co/600x400/png?text=Portfolio+Preview+2"
+            "img/project/kos-finder/kos-finder-priview-1.png",
+            "img/project/kos-finder/kos-finder-priview-2.png",
+            "img/project/kos-finder/kos-finder-priview-3.png"
         ],
         "links": {
-            "demo": "https://portfolio.com"
+            "demo": "https://kos.diginesa.com/"
         }
     },
     {
@@ -23,13 +23,14 @@
             "Figma",
             "UI/UX"
         ],
-        "year": "2024",
+        "year": "2025",
         "images": [
-            "https://placehold.co/600x400/png?text=Portfolio+Preview+1",
-            "https://placehold.co/600x400/png?text=Portfolio+Preview+2"
+            "img/project/kos-finder/kos-finder-priview-1.png",
+            "img/project/kos-finder/kos-finder-priview-2.png",
+            "img/project/kos-finder/kos-finder-priview-3.png"
         ],
         "links": {
-            "figma": "https://www.figma.com/design/3qSxSUOqpXs10tJprbvrge/Kost-Finder?m=auto&t=JYTICMoZR1gFMqh2-6"
+            "figma": "https://www.figma.com/design/3qSxSUOqpXs10tJprbvrge/Kost-Finder?node-id=0-1&t=oQaAVCQsn7UvSe27-1"
         }
     },
     {
@@ -40,14 +41,13 @@
             "TypeScript",
             "Tailwind"
         ],
-        "year": "2024",
+        "year": "2025",
         "images": [
-            "https://placehold.co/600x400/png?text=Portfolio+Preview+1",
-            "https://placehold.co/600x400/png?text=Portfolio+Preview+2"
+            "img/project/portfoliov1/portofoliov1-preview-1.png"
         ],
         "links": {
-            "github": "https://github.com/yourusername/portfolio",
-            "demo": "https://portfolio.com"
+            "github": "https://github.com/FaizNation/my-portofolio",
+            "demo": "https://faiznation.vercel.app/"
         }
     },
     {
@@ -58,9 +58,11 @@
             "Rest API",
             "Dart"
         ],
-        "year": "2023",
+        "year": "2025",
         "images": [
-            "https://placehold.co/600x400/png?text=Dashboard+UI"
+            "img/project/mango/mango-priview-1.png",
+            "img/project/mango/mango-priview-2.png",
+            "img/project/mango/mango-priview-3.png"
         ],
         "links": {
             "github": "https://github.com/FaizNation/mango",
@@ -88,9 +90,10 @@
             "CSS",
             "JS"
         ],
-        "year": "2022",
+        "year": "2025",
         "links": {
-            "github": "https://github.com/yourusername/weather-cli"
+            "github": "https://github.com/FaizNation/Ekonomi-Islam",
+            "demo": "https://shariaeconomy.vercel.app/"
         }
     }
 ]

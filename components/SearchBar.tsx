@@ -18,7 +18,7 @@ interface SuggestionItem {
 }
 
 const SUGGESTIONS: SuggestionItem[] = [
-    { title: "View Resume", href: "/resume.pdf", category: "Suggestion" },
+    { title: "View Resume", href: "/Curriculum Vitae_Fadly Fais Fajarruddin.pdf", category: "Suggestion" },
     { title: "Contact Me", href: "/contact", category: "Suggestion" },
 
     { title: "Home", href: "/", category: "Page" },
@@ -26,7 +26,7 @@ const SUGGESTIONS: SuggestionItem[] = [
     { title: "Projects", href: "/projects", category: "Page" },
     { title: "Writing", href: "/writing", category: "Page" },
 
-    { title: "Portfolio V1", href: "https://v1.faiznation.com", category: "Project" },
+    { title: "Portfolio V1", href: "https://faiznation.vercel.app/", category: "Project" },
 ];
 
 export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
@@ -85,7 +85,7 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
 
             if (e.key === "ArrowDown") {
                 e.preventDefault();
-                setSelectedIndex(prev => 
+                setSelectedIndex(prev =>
                     prev < flatList.length - 1 ? prev + 1 : prev
                 );
             } else if (e.key === "ArrowUp") {
@@ -95,7 +95,11 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                 e.preventDefault();
                 if (flatList.length > 0) {
                     const selected = flatList[selectedIndex];
-                    router.push(selected.href);
+                    if (selected.href.startsWith("https")) {
+                        window.open(selected.href, "_blank", "noopener,noreferrer");
+                    } else {
+                        router.push(selected.href);
+                    }
                     onClose();
                 }
             } else if (e.key === "Escape") {
@@ -183,7 +187,7 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                                                 <div className="flex flex-col gap-1">
                                                     {group.items.map((item) => {
                                                         const currentIndex = globalIndexCounter++;
-                                                        
+
                                                         return (
                                                             <Link
                                                                 key={item.href + item.title}
@@ -191,29 +195,28 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                                                                 data-index={currentIndex}
                                                                 onClick={onClose}
                                                                 onMouseEnter={() => setSelectedIndex(currentIndex)}
-                                                                className={`group flex items-center justify-between px-3 py-2.5 rounded-lg transition-colors cursor-pointer ${
-                                                                    selectedIndex === currentIndex
-                                                                        ? "bg-gray-100 dark:bg-white/10"
-                                                                        : "hover:bg-gray-100 dark:hover:bg-white/5"
-                                                                }`}
+                                                                target={item.href.startsWith("https") ? "_blank" : undefined}
+                                                                rel={item.href.startsWith("https") ? "noopener noreferrer" : undefined}
+                                                                className={`group flex items-center justify-between px-3 py-2.5 rounded-lg transition-colors cursor-pointer ${selectedIndex === currentIndex
+                                                                    ? "bg-gray-100 dark:bg-white/10"
+                                                                    : "hover:bg-gray-100 dark:hover:bg-white/5"
+                                                                    }`}
                                                             >
                                                                 <div className="flex items-center gap-3">
 
                                                                     <div>
-                                                                        <div className={`text-sm font-medium transition-colors ${
-                                                                            selectedIndex === currentIndex 
-                                                                                ? "text-black dark:text-white"
-                                                                                : "text-gray-700 dark:text-gray-200"
-                                                                        }`}>
+                                                                        <div className={`text-sm font-medium transition-colors ${selectedIndex === currentIndex
+                                                                            ? "text-black dark:text-white"
+                                                                            : "text-gray-700 dark:text-gray-200"
+                                                                            }`}>
                                                                             {item.title}
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <ArrowRight className={`w-4 h-4 text-gray-400 transition-all duration-200 ${
-                                                                    selectedIndex === currentIndex 
-                                                                        ? "opacity-100 translate-x-0"
-                                                                        : "opacity-0 -translate-x-2"
-                                                                }`} />
+                                                                <ArrowRight className={`w-4 h-4 text-gray-400 transition-all duration-200 ${selectedIndex === currentIndex
+                                                                    ? "opacity-100 translate-x-0"
+                                                                    : "opacity-0 -translate-x-2"
+                                                                    }`} />
                                                             </Link>
                                                         );
                                                     })}
