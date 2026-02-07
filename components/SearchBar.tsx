@@ -18,7 +18,7 @@ interface SuggestionItem {
 }
 
 const SUGGESTIONS: SuggestionItem[] = [
-    { title: "View Resume", href: "/curriculum-vitae_fadly-fais-fajarruddin.pdf", category: "Suggestion" },
+    { title: "View Resume", href: "https://www.faiznation.dev/curriculum-vitae_fadly-fais-fajarruddin.pdf", category: "Suggestion" },
     { title: "Contact Me", href: "/contact", category: "Suggestion" },
 
     { title: "Home", href: "/", category: "Page" },
