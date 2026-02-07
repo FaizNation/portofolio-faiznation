@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Loader2, Send } from "lucide-react";
+export const dynamic = 'force-dynamic';
 
 export default function Contact() {
     const [isLoading, setIsLoading] = useState(false);

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 export default async function Footer() {
     let commitHash = "unknown";
     let commitUrl = "#";
@@ -5,7 +7,7 @@ export default async function Footer() {
     try {
         const commitApiUrl = process.env.GITHUB_COMMITS_URL || "";
         const res = await fetch(commitApiUrl, {
-            cache: "no-store",
+            next: { revalidate: 3600 },
         });
         if (res.ok) {
             const data = await res.json();

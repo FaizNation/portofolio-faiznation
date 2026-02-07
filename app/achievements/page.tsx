@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import achievementsData from "@/data/achievements.json";
 import ImageModal from "@/components/ImageModal";
+export const dynamic = 'force-dynamic';
 
 
 export default function Achievements() {

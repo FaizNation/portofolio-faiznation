@@ -1,6 +1,7 @@
 import ProjectCard, { Project } from "@/components/ProjectCard";
 
 import projectsDataRaw from "@/data/projects.json";
+export const dynamic = 'force-dynamic';
 
 const projects: Project[] = projectsDataRaw as Project[];
 

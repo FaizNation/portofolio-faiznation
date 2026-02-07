@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Mail, Instagram, Linkedin, Facebook, Github } from "lucide-react";
 import SkillsTabs from "@/components/SkillsTabs";
 import ExperienceTabs from "@/components/ExperienceTabs";
+export const dynamic = 'force-dynamic';
 
 export default function About() {
   return (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import galleryData from "@/data/gallery.json";
-
+export const dynamic = 'force-dynamic';
 interface GalleryAlbum {
     title: string;
     year: string;
