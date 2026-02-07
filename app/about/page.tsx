@@ -21,7 +21,7 @@ export default function About() {
             I focus on UI/UX Design and Frontend Development. I am a person who is passionate about technology and always curious to learn new things. I am also a person who is responsible and always tries to do my best in everything I do.
           </p>
           <p>
-            Curious about my full professional journey? Take a look at my <Link href="/Curriculum Vitae_Fadly Fais Fajarruddin.pdf" target="_blank" className="underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1 text-black dark:text-white transition-colors">career</Link>.
+            Curious about my full professional journey? Take a look at my <a href="/curriculum-vitae_fadly-fais-fajarruddin.pdf" target="_blank" rel="noopener noreferrer" className="underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1 text-black dark:text-white transition-colors">career</a>.
           </p>
 
         </div>
