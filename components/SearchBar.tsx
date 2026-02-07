@@ -18,7 +18,7 @@ interface SuggestionItem {
 }
 
 const SUGGESTIONS: SuggestionItem[] = [
-    { title: "View Resume", href: "https://www.faiznation.dev/curriculum-vitae_fadly-fais-fajarruddin.pdf", category: "Suggestion" },
+    { title: "View Resume", href: "/curriculum-vitae_fadly-fais-fajarruddin.pdf", category: "Suggestion" },
     { title: "Contact Me", href: "/contact", category: "Suggestion" },
 
     { title: "Home", href: "/", category: "Page" },
@@ -95,7 +95,11 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                 e.preventDefault();
                 if (flatList.length > 0) {
                     const selected = flatList[selectedIndex];
-                    if (selected.href.startsWith("https")) {
+                    const isExternalOrFile =
+                        selected.href.startsWith("http") ||
+                        selected.href.endsWith(".pdf");
+
+                    if (isExternalOrFile) {
                         window.open(selected.href, "_blank", "noopener,noreferrer");
                     } else {
                         router.push(selected.href);
@@ -189,14 +193,11 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                                                         const currentIndex = globalIndexCounter++;
 
                                                         return (
-                                                            <Link
+                                                            <div
                                                                 key={item.href + item.title}
-                                                                href={item.href}
                                                                 data-index={currentIndex}
                                                                 onClick={onClose}
                                                                 onMouseEnter={() => setSelectedIndex(currentIndex)}
-                                                                target={item.href.startsWith("https") ? "_blank" : undefined}
-                                                                rel={item.href.startsWith("https") ? "noopener noreferrer" : undefined}
                                                                 className={`group flex items-center justify-between px-3 py-2.5 rounded-lg transition-colors cursor-pointer ${selectedIndex === currentIndex
                                                                     ? "bg-gray-100 dark:bg-white/10"
                                                                     : "hover:bg-gray-100 dark:hover:bg-white/5"
@@ -217,7 +218,7 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                                                                     ? "opacity-100 translate-x-0"
                                                                     : "opacity-0 -translate-x-2"
                                                                     }`} />
-                                                            </Link>
+                                                            </div>
                                                         );
                                                     })}
                                                 </div>
