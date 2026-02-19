@@ -79,6 +79,19 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
         setSelectedIndex(0);
     }, [query, isOpen]);
 
+    const handleSelect = (item: SuggestionItem) => {
+        const isExternalOrFile =
+            item.href.startsWith("http") ||
+            item.href.endsWith(".pdf");
+
+        if (isExternalOrFile) {
+            window.open(item.href, "_blank", "noopener,noreferrer");
+        } else {
+            router.push(item.href);
+        }
+        onClose();
+    };
+
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (!isOpen) return;
@@ -94,17 +107,7 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
             } else if (e.key === "Enter") {
                 e.preventDefault();
                 if (flatList.length > 0) {
-                    const selected = flatList[selectedIndex];
-                    const isExternalOrFile =
-                        selected.href.startsWith("http") ||
-                        selected.href.endsWith(".pdf");
-
-                    if (isExternalOrFile) {
-                        window.open(selected.href, "_blank", "noopener,noreferrer");
-                    } else {
-                        router.push(selected.href);
-                    }
-                    onClose();
+                    handleSelect(flatList[selectedIndex]);
                 }
             } else if (e.key === "Escape") {
                 onClose();
@@ -196,7 +199,7 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                                                             <div
                                                                 key={item.href + item.title}
                                                                 data-index={currentIndex}
-                                                                onClick={onClose}
+                                                                onClick={() => handleSelect(item)}
                                                                 onMouseEnter={() => setSelectedIndex(currentIndex)}
                                                                 className={`group flex items-center justify-between px-3 py-2.5 rounded-lg transition-colors cursor-pointer ${selectedIndex === currentIndex
                                                                     ? "bg-gray-100 dark:bg-white/10"
