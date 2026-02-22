@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
 export interface Project {
     title: string;
@@ -18,6 +19,18 @@ export interface Project {
 
 export default function ProjectCard({ project }: { project: Project }) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    useEffect(() => {
+        if (isExpanded) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isExpanded]);
 
     const nextImage = () => {
         if (!project.images || project.images.length === 0) return;
@@ -29,11 +42,13 @@ export default function ProjectCard({ project }: { project: Project }) {
         setCurrentImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length);
     };
 
-    return (
-        <div className="group flex flex-col gap-4 p-6 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 rounded-2xl hover:border-zinc-200 dark:hover:border-zinc-700 transition-all hover:shadow-sm">
+    const CardContent = () => (
+        <motion.div
+            className={`flex flex-col gap-4 p-6 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 rounded-2xl transition-all ${!isExpanded ? "hover:border-zinc-200 dark:hover:border-zinc-700 hover:shadow-sm" : ""}`}
+        >
             {/* Image Carousel */}
             {project.images && project.images.length > 0 && (
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-zinc-200 dark:bg-zinc-800 group/slider">
+                <div className={`relative w-full aspect-[915/512] rounded-xl overflow-hidden bg-zinc-200 dark:bg-zinc-800 group/slider`}>
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={currentImageIndex}
@@ -85,7 +100,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 </span>
             </div>
 
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-3">
+            <p className={`text-sm text-gray-600 dark:text-gray-400 leading-relaxed ${!isExpanded ? "line-clamp-3" : ""}`}>
                 {project.description}
             </p>
 
@@ -108,6 +123,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                             href={project.links.github}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
@@ -119,6 +135,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                             href={project.links.figma}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"></path><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"></path><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"></path></svg>
@@ -130,6 +147,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                             href={project.links.demo}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors ml-auto"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -138,6 +156,45 @@ export default function ProjectCard({ project }: { project: Project }) {
                     )}
                 </div>
             )}
-        </div>
+        </motion.div>
+    );
+
+    return (
+        <>
+            <div
+                className="cursor-pointer"
+                onClick={() => setIsExpanded(true)}
+            >
+                <CardContent />
+            </div>
+
+            <AnimatePresence>
+                {isExpanded && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsExpanded(false)}
+                            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            className="relative w-full max-w-2xl z-[51]"
+                        >
+                            <button
+                                onClick={() => setIsExpanded(false)}
+                                className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+                            <CardContent />
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+        </>
     );
 }

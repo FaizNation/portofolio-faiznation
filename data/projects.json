@@ -1,5 +1,29 @@
 [
     {
+        "title": "Safe Bite",
+        "description": "AI-powered mobile food safety laboratory.",
+        "tags": [
+            "Flutter",
+            "Dart",
+            "Gemini API"
+        ],
+        "year": "2026",
+        "images": [
+            "img/project/safe-bite/Frame 1.png",
+            "img/project/safe-bite/Frame 2.png",
+            "img/project/safe-bite/Frame 3.png",
+            "img/project/safe-bite/Frame 4.png",
+            "img/project/safe-bite/Frame 5.png",
+            "img/project/safe-bite/Frame 6.png",
+            "img/project/safe-bite/Frame 7.png",
+            "img/project/safe-bite/Frame 8.png"
+        ],
+        "links": {
+            "demo": "https://flutter-fusion-conference-2026.com",
+            "github": "https://github.com/FaizNation/safe_bite"
+        }
+    },
+    {
         "title": "Kost Finder",
         "description": "A website to find kost around campus, project from Diginesa",
         "tags": [
@@ -77,6 +101,9 @@
             "Web Scraper"
         ],
         "year": "2025",
+        "images": [
+            "img/project/komiku-scraper/komiku-scraper.png"
+        ],
         "links": {
             "github": "https://github.com/FaizNation/komiku-scraper-go"
         }

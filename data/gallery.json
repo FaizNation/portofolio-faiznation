@@ -1,5 +1,52 @@
 [
   {
+    "slug": "flutter-fusion-conference-2026",
+    "title": "Flutter Fusion Conference 2026",
+    "year": "2026",
+    "items": [
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1DVVEL6yXUgTC6sOEdov2Gj3CMW1R-xgf",
+        "alt": "Flutter Fusion Conference",
+        "caption": "Flutter Fusion Conference"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1zrqE0F_tU2ZlMlkXyVv5R33z2llF2515",
+        "alt": "Flutter Fusion Conference",
+        "caption": "Flutter Fusion Conference",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1vk74ojRE8IciJZCWVI5ERJuU9gdE8Ehj",
+        "alt": "Flutter Fusion Conference",
+        "caption": "Flutter Fusion Conference"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=12p2SnY6ggHgkPnGBrhaOLDWCbox_E73h",
+        "alt": "Flutter Fusion Conference",
+        "caption": "Flutter Fusion Conference",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=197JU0ItySnI2oRYAx2t-F1twchnTBQCP",
+        "alt": "Flutter Fusion Conference",
+        "caption": "Flutter Fusion Conference",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1t_U7udZfIVXGSo0sqJ3s31gDz7p55z3J",
+        "alt": "Flutter Fusion Conference",
+        "caption": "Flutter Fusion Conference",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1YC9gp2rRrEPVFDvCi3kh1LOx0TkUZbyp",
+        "alt": "Flutter Fusion Conference",
+        "caption": "Flutter Fusion Conference",
+        "span": "row-span-2"
+      }
+    ]
+  },
+  {
     "slug": "recode-2026",
     "title": "Re:Code 2026",
     "year": "2026",
