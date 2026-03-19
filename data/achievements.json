@@ -1,19 +1,19 @@
 [
   {
     "id": 1,
-    "title": "Intro to Software Engineering",
-    "year": "2024",
-    "imageSrc": "https://drive.google.com/uc?export=view&id=1F3M4QhcG68daBAv5f2nlzaADvJ1fJ16M",
-    "caption": "a 2 weeks certified online course offered by RevoU",
-    "link": "https://drive.google.com/file/d/1F3M4QhcG68daBAv5f2nlzaADvJ1fJ16M/view?usp=sharing"
+    "title": "runner-up at the explorAItion",
+    "year": "2026",
+    "imageSrc": "https://drive.google.com/uc?export=view&id=1Kkts9UPpxC_m0yJf4_RiWqkwW1I0cPHr",
+    "caption": "A mini hackathon to turn ideas into digital creations in 48 hours",
+    "link": "https://drive.google.com/file/d/1Kkts9UPpxC_m0yJf4_RiWqkwW1I0cPHr/view?usp=sharing"
   },
   {
     "id": 2,
-    "title": "Imphnen",
-    "year": "2024",
-    "imageSrc": "https://drive.google.com/uc?export=view&id=1nfu_NQLSAto71l1VJmUfGAVVYgYAA86h",
-    "caption": "Ingin menjadi programer handal namun enggan ngoding",
-    "link": "https://drive.google.com/file/d/1nfu_NQLSAto71l1VJmUfGAVVYgYAA86h/view?usp=drive_link"
+    "title": "Participant of Flutter Fusion: Connect & Create Competition",
+    "year": "2026",
+    "imageSrc": "https://drive.google.com/uc?export=view&id=1Vh0Fcm0hxrqV2jaDHkrdudbamg4MGyc_",
+    "caption": "Flutter Fusion: Connect & Create Competition",
+    "link": "https://drive.google.com/file/d/1Vh0Fcm0hxrqV2jaDHkrdudbamg4MGyc_/view?usp=drive_link"
   },
   {
     "id": 3,
@@ -22,5 +22,21 @@
     "imageSrc": "https://drive.google.com/uc?export=view&id=1BpV7yoJTprozPy2bvFwamSetKUPBQpJB",
     "caption": "UI/UX with Figma",
     "link": "https://drive.google.com/file/d/1BpV7yoJTprozPy2bvFwamSetKUPBQpJB/view?usp=drive_link"
+  },
+  {
+    "id": 4,
+    "title": "Intro to Software Engineering",
+    "year": "2024",
+    "imageSrc": "https://drive.google.com/uc?export=view&id=1F3M4QhcG68daBAv5f2nlzaADvJ1fJ16M",
+    "caption": "a 2 weeks certified online course offered by RevoU",
+    "link": "https://drive.google.com/file/d/1F3M4QhcG68daBAv5f2nlzaADvJ1fJ16M/view?usp=sharing"
+  },
+  {
+    "id": 5,
+    "title": "Imphnen",
+    "year": "2024",
+    "imageSrc": "https://drive.google.com/uc?export=view&id=1nfu_NQLSAto71l1VJmUfGAVVYgYAA86h",
+    "caption": "Ingin menjadi programer handal namun enggan ngoding",
+    "link": "https://drive.google.com/file/d/1nfu_NQLSAto71l1VJmUfGAVVYgYAA86h/view?usp=drive_link"
   }
 ]

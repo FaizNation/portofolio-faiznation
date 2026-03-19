@@ -1,5 +1,55 @@
 [
   {
+    "slug": "exploration-batch-6",
+    "title": "ExplorAItion Batch 6",
+    "year": "2026",
+    "items": [
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1iRw911Gi6wu3Xss16rpYEGxbiEv9Jetr",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1VF55JfDyySeQzYmz6vWG6b9et2DNgOm9",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1M1nBx9Eow4XLxf5-HKZiyKAq3o-7tT6t",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1QBKVEi2m2_9WPCbV8Igy7M1yk3Da-NQK",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1tsTpTlr221trTKkVI7HIX5IqClYnhN6f",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6",
+        "span": "row-span-2"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1INbbnTalVgzbzzNXBNUndUS6y5UoODZO",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1hDdKNf8OSuc5FOg-tqiwe8Yr5pmcefVn",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1a_n5q26mSJi07b0900dFCATJz390RXb_",
+        "alt": "ExplorAItion Batch 6",
+        "caption": "ExplorAItion Batch 6"
+      }
+    ]
+  },
+  {
     "slug": "flutter-fusion-conference-2026",
     "title": "Flutter Fusion Conference 2026",
     "year": "2026",

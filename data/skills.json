@@ -9,7 +9,6 @@
     ],
     "Frameworks": [
         "Next.js",
-        "React",
         "Tailwind CSS",
         "Node.js",
         "Flutter",

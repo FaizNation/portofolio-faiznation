@@ -22,9 +22,35 @@ export default function ChatWidget() {
     const [comments, setComments] = useState<Comment[]>([]);
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [showPrompt, setShowPrompt] = useState(false);
     const commentsEndRef = useRef<HTMLDivElement>(null);
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const fabRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        if (session || isOpen) {
+            setShowPrompt(false);
+            return;
+        }
+
+        let timeoutId: ReturnType<typeof setTimeout>;
+        let hideTimeoutId: ReturnType<typeof setTimeout>;
+
+        const startPromptCycle = () => {
+            setShowPrompt(true);
+            hideTimeoutId = setTimeout(() => {
+                setShowPrompt(false);
+                timeoutId = setTimeout(startPromptCycle, 10000);
+            }, 5000);
+        };
+
+        timeoutId = setTimeout(startPromptCycle, 3000);
+
+        return () => {
+            clearTimeout(timeoutId);
+            clearTimeout(hideTimeoutId);
+        };
+    }, [session, isOpen]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -362,6 +388,25 @@ export default function ChatWidget() {
                                     </div>
                                 )}
                             </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {/* Notification Prompt */}
+                <AnimatePresence>
+                    {!isOpen && !session && showPrompt && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                            className="relative bg-white dark:bg-zinc-800 px-4 py-3 rounded-2xl shadow-xl border border-black/10 dark:border-white/10 cursor-pointer flex items-center gap-2 mr-1"
+                            onClick={() => setIsOpen(true)}
+                        >
+                            <div className="flex flex-col">
+                                <span className="text-sm font-semibold text-black dark:text-white">Let’s discuss! 👋</span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">with me and others</span>
+                            </div>
+                            <div className="absolute -bottom-2 right-5 w-4 h-4 bg-white dark:bg-zinc-800 border-b border-r border-black/10 dark:border-white/10 transform rotate-45" />
                         </motion.div>
                     )}
                 </AnimatePresence>

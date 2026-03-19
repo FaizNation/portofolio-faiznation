@@ -6,6 +6,29 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, ArrowRight } from "lucide-react";
 
+import projectsData from "../data/projects.json";
+import achievementsData from "../data/achievements.json";
+
+const HighlightText = ({ text, highlight }: { text: string; highlight: string }) => {
+    if (!highlight.trim()) return <>{text}</>;
+    
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+    
+    return (
+        <>
+            {parts.map((part, i) => 
+                part.toLowerCase() === highlight.toLowerCase() ? (
+                    <span key={i} className="bg-yellow-200 dark:bg-yellow-500/30 text-yellow-900 dark:text-yellow-200 rounded-[2px] px-[2px]">
+                        {part}
+                    </span>
+                ) : (
+                    <span key={i}>{part}</span>
+                )
+            )}
+        </>
+    );
+};
+
 interface SearchBarProps {
     isOpen: boolean;
     onClose: () => void;
@@ -13,9 +36,24 @@ interface SearchBarProps {
 
 interface SuggestionItem {
     title: string;
+    description?: string;
     href: string;
     category: "Suggestion" | "Page" | "Project" | "Other";
 }
+
+const PROJECT_SUGGESTIONS: SuggestionItem[] = projectsData.map((p) => ({
+    title: p.title,
+    description: p.description,
+    href: p.links?.demo || p.links?.github || p.links?.figma || "/projects",
+    category: "Project"
+}));
+
+const ACHIEVEMENT_SUGGESTIONS: SuggestionItem[] = achievementsData.map((a) => ({
+    title: a.title,
+    description: a.caption,
+    href: a.link || "/about",
+    category: "Other"
+}));
 
 const SUGGESTIONS: SuggestionItem[] = [
     { title: "View Resume", href: "/curriculum-vitae_fadly-fais-fajarruddin.pdf", category: "Suggestion" },
@@ -26,7 +64,8 @@ const SUGGESTIONS: SuggestionItem[] = [
     { title: "Projects", href: "/projects", category: "Page" },
     { title: "Writing", href: "/writing", category: "Page" },
 
-    { title: "Portfolio V1", href: "https://faiznation.vercel.app/", category: "Project" },
+    ...PROJECT_SUGGESTIONS,
+    ...ACHIEVEMENT_SUGGESTIONS
 ];
 
 export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
@@ -37,8 +76,10 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
 
     const filteredItems = useMemo(() => {
         if (!query) return SUGGESTIONS;
+        const lowerQuery = query.toLowerCase();
         return SUGGESTIONS.filter(item =>
-            item.title.toLowerCase().includes(query.toLowerCase())
+            item.title.toLowerCase().includes(lowerQuery) ||
+            item.description?.toLowerCase().includes(lowerQuery)
         );
     }, [query]);
 
@@ -213,8 +254,13 @@ export default function SearchBar({ isOpen, onClose }: SearchBarProps) {
                                                                             ? "text-black dark:text-white"
                                                                             : "text-gray-700 dark:text-gray-200"
                                                                             }`}>
-                                                                            {item.title}
+                                                                            <HighlightText text={item.title} highlight={query} />
                                                                         </div>
+                                                                        {item.description && (
+                                                                            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
+                                                                                <HighlightText text={item.description} highlight={query} />
+                                                                            </div>
+                                                                        )}
                                                                     </div>
                                                                 </div>
                                                                 <ArrowRight className={`w-4 h-4 text-gray-400 transition-all duration-200 ${selectedIndex === currentIndex

@@ -1,5 +1,31 @@
 [
     {
+        "title": "Unified",
+        "description": "Navigating Financial Milestones, Together.",
+        "tags": [
+            "Flutter",
+            "Dart",
+            "Gemini API"
+        ],
+        "year": "2026",
+        "images": [
+            "img/project/unified/1.png",
+            "img/project/unified/2.jpg",
+            "img/project/unified/3.jpg",
+            "img/project/unified/4.jpg",
+            "img/project/unified/5.png",
+            "img/project/unified/6.jpg",
+            "img/project/unified/7.jpg",
+            "img/project/unified/8.jpg",
+            "img/project/unified/9.jpg",
+            "img/project/unified/10.jpg"
+        ],
+        "links": {
+            "demo": "https://ournation.cloud/unified.html",
+            "github": "https://github.com/FaizNation/unified"
+        }
+    },
+    {
         "title": "Safe Bite",
         "description": "AI-powered mobile food safety laboratory.",
         "tags": [
@@ -19,7 +45,6 @@
             "img/project/safe-bite/Frame 8.png"
         ],
         "links": {
-            "demo": "https://flutter-fusion-conference-2026.com",
             "github": "https://github.com/FaizNation/safe_bite"
         }
     },
@@ -91,21 +116,6 @@
         "links": {
             "github": "https://github.com/FaizNation/mango",
             "demo": "https://dashboard-demo.com"
-        }
-    },
-    {
-        "title": "Komiku-scraper-go",
-        "description": "a web scraper for komiku.id using golang",
-        "tags": [
-            "Go",
-            "Web Scraper"
-        ],
-        "year": "2025",
-        "images": [
-            "img/project/komiku-scraper/komiku-scraper.png"
-        ],
-        "links": {
-            "github": "https://github.com/FaizNation/komiku-scraper-go"
         }
     },
     {
