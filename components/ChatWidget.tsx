@@ -399,14 +399,14 @@ export default function ChatWidget() {
                             initial={{ opacity: 0, y: 10, scale: 0.9 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                            className="relative bg-white dark:bg-zinc-800 px-4 py-3 rounded-2xl shadow-xl border border-black/10 dark:border-white/10 cursor-pointer flex items-center gap-2 mr-1"
+                            className="relative right-12 bg-white dark:bg-zinc-800 px-4 py-3 rounded-2xl shadow-xl border border-black/10 dark:border-white/10 cursor-pointer flex items-center gap-2 mr-1"
                             onClick={() => setIsOpen(true)}
                         >
                             <div className="flex flex-col">
                                 <span className="text-sm font-semibold text-black dark:text-white">Let’s discuss! 👋</span>
                                 <span className="text-xs text-gray-500 dark:text-gray-400">with me and others</span>
                             </div>
-                            <div className="absolute -bottom-2 right-5 w-4 h-4 bg-white dark:bg-zinc-800 border-b border-r border-black/10 dark:border-white/10 transform rotate-45" />
+                            <div className="absolute -bottom-2 right-4 w-4 h-4 bg-white dark:bg-zinc-800 border-b border-r border-black/10 dark:border-white/10 transform rotate-45" />
                         </motion.div>
                     )}
                 </AnimatePresence>

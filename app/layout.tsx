@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ChatWidget from "../components/ChatWidget";
 import SessionProvider from "../components/SessionProvider";
+import NetworkStatusAlert from "../components/NetworkStatusAlert";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +21,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FaizNation",
   description: "Official portfolio of FaizNation. Explore my projects and connect with me.",
+};
+
+export const viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -40,6 +48,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <ChatWidget />
+            <NetworkStatusAlert />
           </ClientLayout>
         </SessionProvider>
       </body>

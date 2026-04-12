@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import Image from "next/image";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ImageModalProps {
     isOpen: boolean;
@@ -43,87 +44,58 @@ export default function ImageModal({
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onClick={onClose}
-                    className="fixed inset-x-0 top-0 bottom-0 mx-auto w-full max-w-3xl z-[100] flex items-center justify-center p-4"
-                >
-                    {/* Close Button */}
-                    <button
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="absolute top-20 right-4 p-2 text-white/70 hover:text-white transition-colors z-[110] bg-black/20 rounded-full"
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                    />
+                    
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="relative w-full max-w-5xl h-[85vh] z-[101] flex flex-col items-center justify-center group/modal"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                        {/* Close Button */}
+                        <button
+                            onClick={onClose}
+                            className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors"
                         >
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </button>
+                            <X size={24} />
+                        </button>
 
-                    {/* Navigation Buttons */}
-                    {showNavigation && (
-                        <>
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    onPrev();
-                                }}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white transition-colors hidden md:block z-[110] bg-black/20 rounded-full hover:bg-black/40"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                        {/* Navigation Buttons */}
+                        {showNavigation && (
+                            <>
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onPrev();
+                                    }}
+                                    className="absolute left-2 md:-left-12 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover/modal:opacity-100 transition-opacity hover:bg-black/70 hidden md:flex items-center justify-center z-[110]"
                                 >
-                                    <polyline points="15 18 9 12 15 6"></polyline>
-                                </svg>
-                            </button>
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    onNext();
-                                }}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white transition-colors hidden md:block z-[110] bg-black/20 rounded-full hover:bg-black/40"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                                    <ChevronLeft size={24} />
+                                </button>
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onNext();
+                                    }}
+                                    className="absolute right-2 md:-right-12 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover/modal:opacity-100 transition-opacity hover:bg-black/70 hidden md:flex items-center justify-center z-[110]"
                                 >
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </button>
-                        </>
-                    )}
+                                    <ChevronRight size={24} />
+                                </button>
+                            </>
+                        )}
 
-                    {/* Image Container */}
-                    <div
-                        className="relative w-full h-full flex items-center justify-center p-4 md:p-8"
-                        onClick={(e) => e.stopPropagation()}
-                    >
+                        {/* Image Container */}
+                        <div
+                            className="relative w-full h-full flex items-center justify-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                         <AnimatePresence mode="popLayout" initial={false}>
                             <motion.div
                                 key={imageSrc}
@@ -190,8 +162,9 @@ export default function ImageModal({
                                 </a>
                             </motion.div>
                         )}
-                    </div>
-                </motion.div>
+                        </div>
+                    </motion.div>
+                </div>
             )}
         </AnimatePresence>
     );
