@@ -15,6 +15,15 @@ export async function GET() {
                         name: true,
                         image: true
                     }
+                },
+                parent: {
+                    include: {
+                        user: {
+                            select: {
+                                name: true
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -33,7 +42,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const { content } = await req.json();
+        const { content, parentId } = await req.json();
 
         if (!content || typeof content !== 'string' || content.trim().length === 0) {
             return NextResponse.json({ error: "Content is required" }, { status: 400 });
@@ -51,12 +60,22 @@ export async function POST(req: Request) {
             data: {
                 content: content.trim(),
                 userId: user.id,
+                parentId: parentId || null,
             },
             include: {
                 user: {
                     select: {
                         name: true,
                         image: true
+                    }
+                },
+                parent: {
+                    include: {
+                        user: {
+                            select: {
+                                name: true
+                            }
+                        }
                     }
                 }
             }

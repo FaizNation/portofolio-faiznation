@@ -12,6 +12,12 @@ interface Comment {
         name: string | null;
         image: string | null;
     };
+    parent?: {
+        content: string;
+        user: {
+            name: string | null;
+        };
+    } | null;
 }
 
 export default function ChatWidget() {
@@ -23,9 +29,20 @@ export default function ChatWidget() {
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showPrompt, setShowPrompt] = useState(false);
+    const [replyTo, setReplyTo] = useState<Comment | null>(null);
+    const [contextMenu, setContextMenu] = useState<{ x: number, y: number, comment: Comment } | null>(null);
+    const [copySuccess, setCopySuccess] = useState(false);
     const commentsEndRef = useRef<HTMLDivElement>(null);
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const fabRef = useRef<HTMLButtonElement>(null);
+    const contextMenuRef = useRef<HTMLDivElement>(null);
+    const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => {
+        const handleCloseMenu = () => setContextMenu(null);
+        window.addEventListener("click", handleCloseMenu);
+        return () => window.removeEventListener("click", handleCloseMenu);
+    }, []);
 
     useEffect(() => {
         if (session || isOpen) {
@@ -59,7 +76,8 @@ export default function ChatWidget() {
                 chatContainerRef.current &&
                 !chatContainerRef.current.contains(event.target as Node) &&
                 fabRef.current &&
-                !fabRef.current.contains(event.target as Node)
+                !fabRef.current.contains(event.target as Node) &&
+                !(contextMenuRef.current && contextMenuRef.current.contains(event.target as Node))
             ) {
                 setIsOpen(false);
             }
@@ -95,6 +113,31 @@ export default function ChatWidget() {
         }
     }, [comments]);
 
+    const handleContextMenu = (e: React.MouseEvent, comment: Comment) => {
+        e.preventDefault();
+        setContextMenu({ x: e.clientX, y: e.clientY, comment });
+    };
+
+    const handleCopy = async (text: string) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopySuccess(true);
+            setTimeout(() => setCopySuccess(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy", err);
+        }
+    };
+
+    const handleTouchStart = (e: React.TouchEvent, comment: Comment) => {
+        longPressTimerRef.current = setTimeout(() => {
+            setContextMenu({ x: e.touches[0].clientX, y: e.touches[0].clientY, comment });
+        }, 500);
+    };
+
+    const handleTouchEnd = () => {
+        if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
+    };
+
     const handleSend = async () => {
         if (!inputValue.trim() || !session) return;
 
@@ -105,13 +148,17 @@ export default function ChatWidget() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ content: inputValue }),
+                body: JSON.stringify({ 
+                    content: inputValue,
+                    parentId: replyTo?.id 
+                }),
             });
 
             if (res.ok) {
                 const newComment = await res.json();
                 setComments([...comments, newComment]);
                 setInputValue("");
+                setReplyTo(null);
             }
         } catch (error) {
             console.error("Failed to send comment", error);
@@ -314,6 +361,10 @@ export default function ChatWidget() {
 
                                             {/* Message Bubble */}
                                             <div
+                                                onContextMenu={(e) => handleContextMenu(e, comment)}
+                                                onTouchStart={(e) => handleTouchStart(e, comment)}
+                                                onTouchEnd={handleTouchEnd}
+                                                onTouchMove={handleTouchEnd}
                                                 className={`
                                                     max-w-[75%] rounded-lg px-3 py-1.5 shadow-sm relative text-sm group
                                                     ${isMe
@@ -330,6 +381,14 @@ export default function ChatWidget() {
                                                 )}
 
                                                 <div className="flex flex-col">
+                                                    {comment.parent && (
+                                                        <div className={`mb-2 p-2 rounded-md border-l-4 text-[12px] opacity-80 ${
+                                                            isMe ? "bg-white/10 border-white" : "bg-black/5 border-black dark:bg-white/5 dark:border-white"
+                                                        }`}>
+                                                            <p className="font-bold mb-0.5">{comment.parent.user.name || "Anonymous"}</p>
+                                                            <p className="line-clamp-2 leading-tight">{comment.parent.content}</p>
+                                                        </div>
+                                                    )}
                                                     <span className="break-words whitespace-pre-wrap leading-tight">{comment.content}</span>
                                                     <span className={`text-[10px] self-end mt-1 ml-2 opacity-70`}>
                                                         {new Date(comment.createdAt).toLocaleDateString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
@@ -349,7 +408,18 @@ export default function ChatWidget() {
                             </div>
 
                             {/* Footer (Input or Login Prompt) */}
-                            <div className="p-4 border-t border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 backdrop-blur-md">
+                            <div className="p-4 border-t border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 backdrop-blur-md flex flex-col">
+                                {replyTo && (
+                                    <div className="mb-2 p-2 bg-zinc-100 dark:bg-zinc-800 border-l-4 border-black dark:border-white rounded-r-lg flex justify-between items-start animate-in slide-in-from-bottom-2">
+                                        <div className="overflow-hidden">
+                                            <p className="text-[10px] font-bold text-black dark:text-white">Replying to {replyTo.user.name || "Anonymous"}</p>
+                                            <p className="text-xs text-gray-500 truncate">{replyTo.content}</p>
+                                        </div>
+                                        <button onClick={() => setReplyTo(null)} className="p-1 hover:bg-black/5 rounded-full text-black dark:text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                        </button>
+                                    </div>
+                                )}
                                 {session ? (
                                     <div className="flex gap-2">
                                         <input
@@ -438,6 +508,51 @@ export default function ChatWidget() {
                     )}
                 </motion.button>
             </div>
+
+            {/* Context Menu */}
+            {contextMenu && (
+                <div 
+                    ref={contextMenuRef}
+                    className="fixed z-[200] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-xl shadow-2xl py-1 w-32 overflow-hidden"
+                    style={{ top: contextMenu.y, left: contextMenu.x }}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <button 
+                        onClick={() => {
+                            setReplyTo(contextMenu.comment);
+                            setContextMenu(null);
+                        }}
+                        className="w-full px-4 py-2 text-left text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center gap-2 text-black dark:text-white transition-colors"
+                    >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 17 4 12 9 7"></polyline><path d="M20 18v-2a4 4 0 0 0-4-4H4"></path></svg>
+                        Reply
+                    </button>
+                    <button 
+                        onClick={() => {
+                            handleCopy(contextMenu.comment.content);
+                            setContextMenu(null);
+                        }}
+                        className="w-full px-4 py-2 text-left text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center gap-2 text-black dark:text-white transition-colors"
+                    >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copy
+                    </button>
+                </div>
+            )}
+
+            {/* Copy Feedback */}
+            <AnimatePresence>
+                {copySuccess && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        className="fixed bottom-24 right-1/2 translate-x-1/2 bg-black dark:bg-white text-white dark:text-black px-4 py-2 rounded-full text-xs font-bold shadow-lg z-[201]"
+                    >
+                        Copied to clipboard!
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }

@@ -1,0 +1,42 @@
+<h2>How should the Reply UI look?</h2>
+<p class="subtitle">When a user replies to a message, how should the context be shown in the new message?</p>
+
+<div class="options">
+  <div class="option" data-choice="bubble-snippet" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Message Bubble Snippet</h3>
+      <p>A small, dimmed snippet of the original message appears above the new message (WhatsApp style).</p>
+      <div class="mockup" style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px;">
+        <div style="border-left: 3px solid #25d366; padding-left: 8px; margin-bottom: 4px; font-size: 0.8em; opacity: 0.7;">
+          <strong>John Doe</strong><br/>
+          Hello, how are you?
+        </div>
+        <div>I'm doing great, thanks!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="simple-text" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Simple Text Reference</h3>
+      <p>Just a small text indicating who is being replied to.</p>
+      <div class="mockup" style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px;">
+        <div style="font-size: 0.7em; opacity: 0.6; margin-bottom: 2px;">Replying to John Doe...</div>
+        <div>I'm doing great, thanks!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="no-context" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>No Visual Context</h3>
+      <p>The message is sent normally, but logically linked (clicking it might jump to original).</p>
+      <div class="mockup" style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px;">
+        <div>I'm doing great, thanks!</div>
+      </div>
+    </div>
+  </div>
+</div>
