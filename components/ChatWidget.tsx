@@ -11,11 +11,13 @@ interface Comment {
     user: {
         name: string | null;
         image: string | null;
+        isVerified?: boolean;
     };
     parent?: {
         content: string;
         user: {
             name: string | null;
+            isVerified?: boolean;
         };
     } | null;
 }
@@ -375,9 +377,16 @@ export default function ChatWidget() {
                                             >
                                                 {/* Sender Name (only for others in group context) */}
                                                 {!isMe && showAvatar && (
-                                                    <p className="text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-0.5 leading-none">
-                                                        {comment.user.name || "Anonymous"}
-                                                    </p>
+                                                    <div className="flex items-center gap-1 mb-0.5">
+                                                        <p className="text-[11px] font-bold text-gray-500 dark:text-gray-400 leading-none">
+                                                            {comment.user.name || "Anonymous"}
+                                                        </p>
+                                                        {comment.user.isVerified && (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[14px] h-[14px] text-blue-500 shrink-0 mt-0.5">
+                                                                <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                                                            </svg>
+                                                        )}
+                                                    </div>
                                                 )}
 
                                                 <div className="flex flex-col">
@@ -385,7 +394,14 @@ export default function ChatWidget() {
                                                         <div className={`mb-2 p-2 rounded-md border-l-4 text-[12px] opacity-80 ${
                                                             isMe ? "bg-white/10 border-white" : "bg-black/5 border-black dark:bg-white/5 dark:border-white"
                                                         }`}>
-                                                            <p className="font-bold mb-0.5">{comment.parent.user.name || "Anonymous"}</p>
+                                                            <div className="flex items-center gap-1 mb-0.5">
+                                                                <p className="font-bold">{comment.parent.user.name || "Anonymous"}</p>
+                                                                {comment.parent.user.isVerified && (
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-blue-500 shrink-0 mt-[1px]">
+                                                                        <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                                                                    </svg>
+                                                                )}
+                                                            </div>
                                                             <p className="line-clamp-2 leading-tight">{comment.parent.content}</p>
                                                         </div>
                                                     )}
@@ -412,7 +428,14 @@ export default function ChatWidget() {
                                 {replyTo && (
                                     <div className="mb-2 p-2 bg-zinc-100 dark:bg-zinc-800 border-l-4 border-black dark:border-white rounded-r-lg flex justify-between items-start animate-in slide-in-from-bottom-2">
                                         <div className="overflow-hidden">
-                                            <p className="text-[10px] font-bold text-black dark:text-white">Replying to {replyTo.user.name || "Anonymous"}</p>
+                                            <div className="flex items-center gap-1">
+                                                <p className="text-[10px] font-bold text-black dark:text-white">Replying to {replyTo.user.name || "Anonymous"}</p>
+                                                {replyTo.user.isVerified && (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[10px] h-[10px] text-blue-500 shrink-0 mt-[1px]">
+                                                        <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                                                    </svg>
+                                                )}
+                                            </div>
                                             <p className="text-xs text-gray-500 truncate">{replyTo.content}</p>
                                         </div>
                                         <button onClick={() => setReplyTo(null)} className="p-1 hover:bg-black/5 rounded-full text-black dark:text-white">

@@ -13,21 +13,49 @@ export async function GET() {
                 user: {
                     select: {
                         name: true,
-                        image: true
+                        image: true,
+                        email: true
                     }
                 },
                 parent: {
                     include: {
                         user: {
                             select: {
-                                name: true
+                                name: true,
+                                email: true
                             }
                         }
                     }
                 }
             }
         });
-        return NextResponse.json(comments);
+
+        const ownerEmail = process.env.EMAIL_USER || "novaatalagrab@gmail.com";
+        const processedComments = comments.map(comment => {
+            const isVerified = comment.user.email === ownerEmail;
+            let parentIsVerified = false;
+            if (comment.parent && comment.parent.user.email) {
+                parentIsVerified = comment.parent.user.email === ownerEmail;
+            }
+
+            return {
+                ...comment,
+                user: {
+                    name: comment.user.name,
+                    image: comment.user.image,
+                    isVerified
+                },
+                parent: comment.parent ? {
+                    ...comment.parent,
+                    user: {
+                        name: comment.parent.user.name,
+                        isVerified: parentIsVerified
+                    }
+                } : null
+            };
+        });
+
+        return NextResponse.json(processedComments);
     } catch (error) {
         console.error("Error fetching comments:", error);
         return NextResponse.json({ error: "Failed to fetch comments" }, { status: 500 });
@@ -66,14 +94,16 @@ export async function POST(req: Request) {
                 user: {
                     select: {
                         name: true,
-                        image: true
+                        image: true,
+                        email: true
                     }
                 },
                 parent: {
                     include: {
                         user: {
                             select: {
-                                name: true
+                                name: true,
+                                email: true
                             }
                         }
                     }
@@ -81,7 +111,30 @@ export async function POST(req: Request) {
             }
         });
 
-        return NextResponse.json(newComment);
+        const ownerEmail = process.env.EMAIL_USER || "[EMAIL_ADDRESS]";
+        const isVerified = newComment.user.email === ownerEmail;
+        let parentIsVerified = false;
+        if (newComment.parent && newComment.parent.user.email) {
+            parentIsVerified = newComment.parent.user.email === ownerEmail;
+        }
+
+        const processedNewComment = {
+            ...newComment,
+            user: {
+                name: newComment.user.name,
+                image: newComment.user.image,
+                isVerified
+            },
+            parent: newComment.parent ? {
+                ...newComment.parent,
+                user: {
+                    name: newComment.parent.user.name,
+                    isVerified: parentIsVerified
+                }
+            } : null
+        };
+
+        return NextResponse.json(processedNewComment);
     } catch (error) {
         console.error("Error creating comment:", error);
         return NextResponse.json({ error: "Failed to create comment" }, { status: 500 });
