@@ -12,6 +12,7 @@ export async function GET() {
             include: {
                 user: {
                     select: {
+                        id: true,
                         name: true,
                         image: true,
                         email: true
@@ -41,6 +42,7 @@ export async function GET() {
             return {
                 ...comment,
                 user: {
+                    id: comment.user.id,
                     name: comment.user.name,
                     image: comment.user.image,
                     isVerified
@@ -93,6 +95,7 @@ export async function POST(req: Request) {
             include: {
                 user: {
                     select: {
+                        id: true,
                         name: true,
                         image: true,
                         email: true
@@ -111,7 +114,7 @@ export async function POST(req: Request) {
             }
         });
 
-        const ownerEmail = process.env.EMAIL_USER || "[EMAIL_ADDRESS]";
+        const ownerEmail = process.env.EMAIL_USER || "novaatalagrab@gmail.com";
         const isVerified = newComment.user.email === ownerEmail;
         let parentIsVerified = false;
         if (newComment.parent && newComment.parent.user.email) {
@@ -121,6 +124,7 @@ export async function POST(req: Request) {
         const processedNewComment = {
             ...newComment,
             user: {
+                id: newComment.user.id,
                 name: newComment.user.name,
                 image: newComment.user.image,
                 isVerified

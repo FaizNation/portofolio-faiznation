@@ -3,12 +3,23 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { signIn, signOut, useSession } from "next-auth/react";
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar";
 
 interface Comment {
     id: string;
     content: string;
     createdAt: string;
     user: {
+        id?: string;
         name: string | null;
         image: string | null;
         isVerified?: boolean;
@@ -40,10 +51,34 @@ export default function ChatWidget() {
     const contextMenuRef = useRef<HTMLDivElement>(null);
     const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const [userEmails, setUserEmails] = useState<Record<string, string>>({});
+    const pendingEmailsRef = useRef<Set<string>>(new Set());
+
+    const fetchUserEmail = async (userId: string) => {
+        if (!userId || userEmails[userId] || pendingEmailsRef.current.has(userId)) return;
+        pendingEmailsRef.current.add(userId);
+        try {
+            const res = await fetch(`/api/users/${userId}`);
+            if (res.ok) {
+                const data = await res.json();
+                setUserEmails(prev => ({ ...prev, [userId]: data.email }));
+            }
+        } catch (err) {
+            console.error("Failed to fetch user email", err);
+        } finally {
+            pendingEmailsRef.current.delete(userId);
+        }
+    };
+
     useEffect(() => {
         const handleCloseMenu = () => setContextMenu(null);
         window.addEventListener("click", handleCloseMenu);
-        return () => window.removeEventListener("click", handleCloseMenu);
+        return () => {
+            window.removeEventListener("click", handleCloseMenu);
+            if (longPressTimerRef.current) {
+                clearTimeout(longPressTimerRef.current);
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -131,6 +166,7 @@ export default function ChatWidget() {
     };
 
     const handleTouchStart = (e: React.TouchEvent, comment: Comment) => {
+        if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
         longPressTimerRef.current = setTimeout(() => {
             setContextMenu({ x: e.touches[0].clientX, y: e.touches[0].clientY, comment });
         }, 500);
@@ -263,7 +299,7 @@ export default function ChatWidget() {
                                     </svg>
                                 </div>
                                 <h3 className="text-xl font-bold text-black dark:text-white">Sign Out</h3>
-                                <p className="text-gray-500 text-sm">Are you sure you want to sign out? You won't be able to leave comments.</p>
+                                <p className="text-gray-500 text-sm">Are you sure you want to sign out? You won&apos;t be able to leave comments.</p>
                             </div>
 
                             <div className="flex gap-3">
@@ -346,17 +382,47 @@ export default function ChatWidget() {
                                             {!isMe && (
                                                 <div className="w-8 h-8 flex-shrink-0 flex flex-col justify-end">
                                                     {showAvatar ? (
-                                                        comment.user.image ? (
-                                                            <img
-                                                                src={comment.user.image}
-                                                                alt={comment.user.name || "User"}
-                                                                className="w-8 h-8 rounded-full object-cover shadow-sm"
-                                                            />
-                                                        ) : (
-                                                            <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs font-bold text-gray-600">
-                                                                {comment.user.name?.[0] || "?"}
-                                                            </div>
-                                                        )
+                                                        <HoverCard onOpenChange={(open) => {
+                                                            if (open && comment.user.id) {
+                                                                fetchUserEmail(comment.user.id);
+                                                            }
+                                                        }}>
+                                                            <HoverCardTrigger asChild>
+                                                                <button className="w-8 h-8 rounded-full focus:outline-none overflow-hidden cursor-pointer">
+                                                                    {comment.user.image ? (
+                                                                        <img
+                                                                            src={comment.user.image}
+                                                                            alt={comment.user.name || "User"}
+                                                                            className="w-8 h-8 rounded-full object-cover shadow-sm"
+                                                                        />
+                                                                    ) : (
+                                                                        <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs font-bold text-gray-600">
+                                                                            {comment.user.name?.[0] || "?"}
+                                                                        </div>
+                                                                    )}
+                                                                </button>
+                                                            </HoverCardTrigger>
+                                                            <HoverCardContent className="w-80 p-4 border border-black/10 dark:border-white/10 bg-white dark:bg-zinc-900 rounded-xl shadow-xl z-[250]">
+                                                                <div className="flex justify-between space-x-4">
+                                                                    <Avatar className="w-12 h-12">
+                                                                        {comment.user.image ? (
+                                                                            <AvatarImage src={comment.user.image} alt={comment.user.name || "User"} />
+                                                                        ) : null}
+                                                                        <AvatarFallback className="bg-gray-300 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 font-bold text-sm">
+                                                                            {comment.user.name?.[0] || "?"}
+                                                                        </AvatarFallback>
+                                                                    </Avatar>
+                                                                    <div className="space-y-1 flex-1 min-w-0">
+                                                                        <h4 className="text-sm font-semibold text-black dark:text-white truncate">
+                                                                            {comment.user.name || "Anonymous"}
+                                                                        </h4>
+                                                                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                                                                            {comment.user.id ? (userEmails[comment.user.id] || "Loading...") : "No email available"}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </HoverCardContent>
+                                                        </HoverCard>
                                                     ) : <div className="w-8" />}
                                                 </div>
                                             )}
