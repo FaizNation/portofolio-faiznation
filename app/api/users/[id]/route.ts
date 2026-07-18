@@ -13,6 +13,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
             where: { id },
             select: {
                 email: true,
+                joinedAt: true,
             }
         });
 
@@ -20,7 +21,10 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
             return NextResponse.json({ error: "User not found" }, { status: 404 });
         }
 
-        return NextResponse.json({ email: user.email });
+        return NextResponse.json({ 
+            email: user.email,
+            joinedAt: user.joinedAt,
+        });
     } catch (error) {
         console.error("Error fetching user email:", error);
         return NextResponse.json({ error: "Failed to fetch user email" }, { status: 500 });

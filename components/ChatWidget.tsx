@@ -13,6 +13,7 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar";
+import { CalendarDays } from "lucide-react";
 
 interface Comment {
     id: string;
@@ -51,22 +52,32 @@ export default function ChatWidget() {
     const contextMenuRef = useRef<HTMLDivElement>(null);
     const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const [userEmails, setUserEmails] = useState<Record<string, string>>({});
-    const pendingEmailsRef = useRef<Set<string>>(new Set());
+    interface UserDetails {
+        email: string | null;
+        joinedAt: string | null;
+    }
+    const [userDetails, setUserDetails] = useState<Record<string, UserDetails>>({});
+    const pendingDetailsRef = useRef<Set<string>>(new Set());
 
-    const fetchUserEmail = async (userId: string) => {
-        if (!userId || userEmails[userId] || pendingEmailsRef.current.has(userId)) return;
-        pendingEmailsRef.current.add(userId);
+    const fetchUserDetails = async (userId: string) => {
+        if (!userId || userDetails[userId] || pendingDetailsRef.current.has(userId)) return;
+        pendingDetailsRef.current.add(userId);
         try {
             const res = await fetch(`/api/users/${userId}`);
             if (res.ok) {
                 const data = await res.json();
-                setUserEmails(prev => ({ ...prev, [userId]: data.email }));
+                setUserDetails(prev => ({
+                    ...prev,
+                    [userId]: {
+                        email: data.email,
+                        joinedAt: data.joinedAt
+                    }
+                }));
             }
         } catch (err) {
-            console.error("Failed to fetch user email", err);
+            console.error("Failed to fetch user details", err);
         } finally {
-            pendingEmailsRef.current.delete(userId);
+            pendingDetailsRef.current.delete(userId);
         }
     };
 
@@ -372,6 +383,7 @@ export default function ChatWidget() {
                                 {comments.map((comment, index) => {
                                     const isMe = comment.user.name === session?.user?.name;
                                     const showAvatar = !isMe && (index === 0 || comments[index - 1].user.name !== comment.user.name);
+                                    const commentUserJoinedAt = comment.user.id ? userDetails[comment.user.id]?.joinedAt : null;
 
                                     return (
                                         <div
@@ -384,7 +396,7 @@ export default function ChatWidget() {
                                                     {showAvatar ? (
                                                         <HoverCard onOpenChange={(open) => {
                                                             if (open && comment.user.id) {
-                                                                fetchUserEmail(comment.user.id);
+                                                                fetchUserDetails(comment.user.id);
                                                             }
                                                         }}>
                                                             <HoverCardTrigger asChild>
@@ -417,8 +429,16 @@ export default function ChatWidget() {
                                                                             {comment.user.name || "Anonymous"}
                                                                         </h4>
                                                                         <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                                                                            {comment.user.id ? (userEmails[comment.user.id] || "Loading...") : "No email available"}
+                                                                            {comment.user.id ? (userDetails[comment.user.id]?.email || "Loading...") : "No email available"}
                                                                         </p>
+                                                                        <div className="flex items-center pt-2">
+                                                                            <CalendarDays className="mr-2 h-4 w-4 opacity-70 text-gray-500 dark:text-gray-400" />{" "}
+                                                                            <span className="text-xs text-muted-foreground">
+                                                                                {commentUserJoinedAt
+                                                                                    ? `Joined ${new Date(commentUserJoinedAt).toLocaleDateString([], { month: 'long', year: 'numeric' })}`
+                                                                                    : "Loading..."}
+                                                                            </span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </HoverCardContent>
