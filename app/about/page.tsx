@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Mail, Instagram, Linkedin, Facebook, Github } from "lucide-react";
 import SkillsTabs from "@/components/SkillsTabs";
 import ExperienceTabs from "@/components/ExperienceTabs";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@radix-ui/react-hover-card";
+import Image from "next/image";
+import Logo from "@/public/img/logo-unesa.webp";
 export const dynamic = 'force-dynamic';
 
 export default function About() {
@@ -15,7 +18,42 @@ export default function About() {
         <div className="flex flex-col gap-6 text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
           <p>
             Okay, let's do this one last time. For real this time. My name is Fadly Faiz Fajarruddin.
-            I was born in karanganyar, Central Java, and I'm a 19 year old. I am a student at the State University of Surabaya, majoring in Informatics Engineering.
+            I was born in karanganyar, Central Java, and I'm a 19 year old. I am a student at the {" "}
+            <HoverCard>
+              <HoverCardTrigger
+                href="https://unesa.ac.id/"
+                className="underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1 text-black dark:text-white transition-colors"
+              >
+                State University of Surabaya
+              </HoverCardTrigger>
+              <HoverCardContent className="w-sm p-4 bg-white/5 dark:bg-black/5 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-xl">
+                <div className="flex gap-4">
+                  <div className="relative shrink-0">
+                    <Image src={Logo} width={120} height={40} alt="Unesa Logo" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="space-y-1">
+                      <h4 className="text-lg font-semibold text-title-50">
+                        Unesa
+                      </h4>
+                      <p className="text-xs text-text-100 leading-relaxed">
+                        Universitas Negeri Surabaya (UNESA) is a public university located in Surabaya, East Java.
+                      </p>
+                      <div className="flex items-center gap-2 pt-2">
+                        {/* <span className="text-[10px] text-text-200 uppercase tracking-wider font-medium">
+                          Verified
+                        </span> */}
+                        <span className="text-[10px] text-text-200">•</span>
+                        <span className="text-[10px] text-text-200">
+                          Started: 2024
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+            , majoring in Informatics Engineering.
           </p>
           <p>
             I focus on UI/UX Design and Frontend Development. I am a person who is passionate about technology and always curious to learn new things. I am also a person who is responsible and always tries to do my best in everything I do.

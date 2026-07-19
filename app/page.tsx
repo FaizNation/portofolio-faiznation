@@ -1,3 +1,4 @@
+import { HoverPeek } from "@/components/ui/link-preview";
 import Link from "next/link";
 
 export default function Home() {
@@ -9,8 +10,19 @@ export default function Home() {
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
           My name is Faiz Nation, but u can call me Faiz or whatever u like.
-          I like coding, especially with the help of AI, or what is known as <Link href="https://www.ibm.com/think/topics/vibe-coding" target="_blank" className="text-black dark:text-white font-medium underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1">vibe coder</Link>.
-          Idk if I am worthy of that title. BTW, welcome to my website. Feel free to explore this site as u like.
+          I like coding, especially with the help of AI, or what is known as {" "}
+          <HoverPeek url="https://www.ibm.com/think/topics/vibe-coding">
+            <a
+              href="https://www.ibm.com/think/topics/vibe-coding"
+              target="_blank"
+              rel="noopener noreferrer"
+
+              className="underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1 text-black dark:text-white transition-colors"
+            >
+              vibe coder
+            </a>
+          </HoverPeek>
+          . Idk if I am worthy of that title. BTW, welcome to my website. Feel free to explore this site as u like.
           Here I will share my experiences. Want to know more <Link href="/about" className="text-black dark:text-white font-medium underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1">/about</Link> me?
         </p>
       </section>
