@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { Copy, Twitter, Link as LinkIcon, Check, Terminal } from "lucide-react";
+import Link from "next/link";
 
 // --- Custom Blocks --- //
 
@@ -30,8 +31,8 @@ const TerminalBlock = ({ command, output }: { command: string, output?: string }
   };
 
   return (
-    <div className="my-8 rounded-xl overflow-hidden bg-black border border-zinc-800 shadow-2xl relative group">
-      <div className="flex items-center px-4 py-3 bg-[#1e1e1e] border-b border-zinc-800 relative">
+    <div className="my-8 rounded-xl overflow-hidden bg-black border border-zinc-800 shadow-2xl relative group w-full max-w-full">
+      <div className="flex items-center px-4 py-3 bg-[#1e1e1e] border-b border-zinc-800 relative w-full">
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
@@ -48,8 +49,8 @@ const TerminalBlock = ({ command, output }: { command: string, output?: string }
           {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
         </button>
       </div>
-      <div className="p-5 font-mono text-[13px] sm:text-sm">
-        <div className="flex flex-col gap-2 text-zinc-300 leading-relaxed overflow-x-auto">
+      <div className="w-full overflow-x-auto custom-scrollbar">
+        <div className="p-4 sm:p-5 font-mono text-[12px] sm:text-sm flex flex-col gap-2 text-zinc-300 leading-relaxed min-w-max">
           {command.split("\\n").map((cmd, i) => (
             cmd.trim() && (
               <div key={i} className="flex gap-3">
@@ -72,7 +73,7 @@ const TerminalBlock = ({ command, output }: { command: string, output?: string }
 
 const ImagePlaceholder = ({ caption, src }: { caption?: string, src?: string }) => {
   return (
-    <figure className="my-10">
+    <figure className="my-10 w-full max-w-full">
       <div className="w-full aspect-video rounded-xl bg-zinc-100 dark:bg-zinc-800/50 flex items-center justify-center border border-zinc-200 dark:border-zinc-800 shadow-inner overflow-hidden">
         {src ? (
           <img src={src} alt={caption} className="w-full h-full object-cover" loading="lazy" />
@@ -169,8 +170,8 @@ export default function LearnGitPage() {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 py-16 pt-24 lg:pt-32">
-      <div className="flex flex-col lg:flex-row justify-center gap-10 xl:gap-16 relative">
+    <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 py-16 pt-24 lg:pt-32">
+      <div className="flex flex-col lg:flex-row justify-center gap-10 xl:gap-16 relative w-full">
 
         {/* Left Column: TOC & Share */}
         <aside className="hidden lg:block w-64 shrink-0">
@@ -218,8 +219,8 @@ export default function LearnGitPage() {
         </aside>
 
         {/* Center/Right Column: Main Content */}
-        <main ref={contentRef} className="flex-1 max-w-3xl min-w-0 pb-32">
-          <article className="max-w-none">
+        <main ref={contentRef} className="flex-1 max-w-3xl min-w-0 w-full pb-32">
+          <article className="max-w-none w-full break-words">
 
             <header className="mb-14">
               <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400 mb-6 font-medium">
@@ -244,7 +245,7 @@ export default function LearnGitPage() {
                 Anda baru saja menginstal Git di komputer baru. Sebelum mulai mengerjakan proyek apa pun, Anda harus memberi tahu Git siapa nama dan alamat email Anda agar setiap kontribusi kode tercatat atas nama Anda.
               </p>
               <TerminalBlock command="git config --global user.name 'Nama Anda'\ngit config --global user.email 'email@example.com'" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">config --global</code> mengatur identitas Anda untuk semua proyek Git di komputer tersebut. Identitas ini akan menempel secara permanen pada setiap commit yang Anda buat.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">config --global</code> mengatur identitas Anda untuk semua proyek Git di komputer tersebut. Identitas ini akan menempel secara permanen pada setiap commit yang Anda buat.</p>
 
               <h2 id="memulai-proyek" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 2. Memulai Proyek Baru dari Nol
@@ -253,7 +254,7 @@ export default function LearnGitPage() {
                 Anda baru saja membuat folder proyek lokal baru dan ingin mulai melacak perubahan menggunakan Git, lalu menyimpan versi pertamanya.
               </p>
               <TerminalBlock command="git init\ngit add .\ngit commit -m 'pesan anda'" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">init</code> mengubah folder biasa menjadi repositori Git. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">add .</code> memasukkan semua file ke <em>staging area</em>, dan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">commit</code> menyimpan perubahan tersebut secara permanen di riwayat lokal.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">init</code> mengubah folder biasa menjadi repositori Git. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">add .</code> memasukkan semua file ke <em>staging area</em>, dan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">commit</code> menyimpan perubahan tersebut secara permanen di riwayat lokal.</p>
 
               <h2 id="menghubungkan-lokal" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 3. Menghubungkan Lokal ke Server (Remote)
@@ -262,7 +263,7 @@ export default function LearnGitPage() {
                 Proyek lokal Anda sudah siap, dan sekarang Anda ingin mengunggahnya ke GitHub/GitLab agar aman dan bisa diakses tim.
               </p>
               <TerminalBlock command="git remote add origin <url-repositori>\ngit branch -M main\ngit push -u origin main" />
-              <span className="font-semibold">Penjelasan:</span> Menambahkan alamat <em>remote</em> bernama 'origin', memastikan nama <em>branch</em> utama adalah 'main', dan mengunggah kode sambil mengatur agar push selanjutnya cukup dengan perintah <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">git push</code>.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> Menambahkan alamat <em>remote</em> bernama 'origin', memastikan nama <em>branch</em> utama adalah 'main', dan mengunggah kode sambil mengatur agar push selanjutnya cukup dengan perintah <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">git push</code>.</p>
 
               <h2 id="bergabung-tim" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 4. Bergabung dengan Proyek yang Sudah Ada
@@ -271,7 +272,7 @@ export default function LearnGitPage() {
                 Anda baru saja masuk ke tim baru dan perlu mengambil <em>source code</em> proyek yang sudah berjalan ke laptop Anda.
               </p>
               <TerminalBlock command="git clone <url-repositori>\ncd <nama-folder>\ngit status" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">clone</code> mengunduh seluruh repositori beserta riwayat commitnya. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">status</code> digunakan untuk mengecek di <em>branch</em> mana Anda berada dan apakah ada perubahan.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">clone</code> mengunduh seluruh repositori beserta riwayat commitnya. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">status</code> digunakan untuk mengecek di <em>branch</em> mana Anda berada dan apakah ada perubahan.</p>
               <ImagePlaceholder caption="" src="/images/writing/clone.png" />
 
               <h2 id="branch-fitur" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
@@ -281,9 +282,9 @@ export default function LearnGitPage() {
                 Manajer proyek meminta Anda membuat fitur "Login". Anda tidak ingin merusak kode utama selama proses pembuatan fitur ini.
               </p>
               <TerminalBlock command="git switch -c feature/login" />
-              <p>lalu di dalam branch feature/login, Anda membuat halaman login</p>
+              <p className="leading-relaxed">lalu di dalam branch feature/login, Anda membuat halaman login</p>
               <TerminalBlock command="git add login.html\ngit commit -m 'feat: membuat halaman login'" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">switch -c</code> (atau <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">checkout -b</code>) membuat <em>branch</em> baru sekaligus memindahkan Anda ke sana. Pekerjaan Anda kini aman dan terpisah dari <em>branch</em> utama. Anda bisa melihat gambar ini untuk lebih jelasnya.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">switch -c</code> (atau <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">checkout -b</code>) membuat <em>branch</em> baru sekaligus memindahkan Anda ke sana. Pekerjaan Anda kini aman dan terpisah dari <em>branch</em> utama. Anda bisa melihat gambar ini untuk lebih jelasnya.</p>
               <ImagePlaceholder caption="" src="/images/writing/git_branch.png" />
 
               <h2 id="git-stash" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
@@ -298,7 +299,7 @@ export default function LearnGitPage() {
               <p>setelah selesai memperbaiki bug, Anda switch kembali ke branch feature/login</p>
               <TerminalBlock command="switch feature/login\ngit stash pop" />
               <ImagePlaceholder caption="" src="/images/writing/git_stash-2.png" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">stash</code> menyimpan perubahan sementara yang belum di commit ke dalam <em>clipboard</em> Git, sehingga <em>working directory</em> menjadi bersih. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">stash pop</code> mengembalikan pekerjaan tersebut.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">stash</code> menyimpan perubahan sementara yang belum di commit ke dalam <em>clipboard</em> Git, sehingga <em>working directory</em> menjadi bersih. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">stash pop</code> mengembalikan pekerjaan tersebut.</p>
 
               <h2 id="mengambil-pembaruan" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 7. Mengambil Pembaruan Terbaru dari Tim
@@ -307,7 +308,7 @@ export default function LearnGitPage() {
                 Teman satu tim Anda baru saja menyelesaikan fitur keranjang belanja dan mengunggahnya. Anda perlu menyinkronkan kode lokal Anda dengan kode terbaru.
               </p>
               <TerminalBlock command="git fetch origin\ngit pull origin main" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">fetch</code> mengambil metadata perubahan dari server tanpa mengubah kode lokal. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">pull</code> mengunduh perubahan tersebut dan langsung menggabungkannya ke <em>branch</em> Anda saat ini.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">fetch</code> mengambil metadata perubahan dari server tanpa mengubah kode lokal. <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">pull</code> mengunduh perubahan tersebut dan langsung menggabungkannya ke <em>branch</em> Anda saat ini.</p>
               <ImagePlaceholder caption="" src="/images/writing/fetchandpull.png" />
 
               <h2 id="menggabungkan-fitur" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
@@ -317,7 +318,7 @@ export default function LearnGitPage() {
                 Fitur "Login" Anda sudah selesai dan diuji. Sekarang waktunya menggabungkan fitur tersebut ke <em>branch</em> utama.
               </p>
               <TerminalBlock command="git switch main\ngit pull origin main\ngit merge feature/login" />
-              <span className="font-semibold">Penjelasan:</span> Anda berpindah ke <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">main</code>, memastikan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">main</code> adalah versi paling baru, lalu menjalankan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">merge</code> untuk menyatukan pekerjaan di <em>branch</em> fitur Anda ke dalam <em>branch</em> utama.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> Anda berpindah ke <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">main</code>, memastikan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">main</code> adalah versi paling baru, lalu menjalankan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">merge</code> untuk menyatukan pekerjaan di <em>branch</em> fitur Anda ke dalam <em>branch</em> utama.</p>
               <ImagePlaceholder caption="" src="/images/writing/git_merge.png" />
 
               <h2 id="patching" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
@@ -327,7 +328,7 @@ export default function LearnGitPage() {
                 Anda mengubah 5 file, tapi hanya ingin meng commit 2 file pertama untuk commit ini karena berkaitan dengan fitur A, sedangkan 3 lainnya untuk fitur B.
               </p>
               <TerminalBlock command="git add file1.js file2.js\ngit commit -m 'feat: update fitur" />
-              <span className="font-semibold">Penjelasan:</span> Daripada <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">add .</code>, kita menyebutkan nama file secara spesifik agar commit lebih terorganisir dan memiliki konteks yang jelas.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> Daripada <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">add .</code>, kita menyebutkan nama file secara spesifik agar commit lebih terorganisir dan memiliki konteks yang jelas.</p>
               <ImagePlaceholder caption="" src="/images/writing/patching.png" />
 
               <h2 id="memperbaiki-typo" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
@@ -337,7 +338,7 @@ export default function LearnGitPage() {
                 Anda baru saja menekan <em>enter</em> untuk commit, lalu menyadari ada salah ketik yang fatal di pesan commitnya, atau ada satu file yang terlupa dimasukkan.
               </p>
               <TerminalBlock command="git add file_yang_terlupa.js\ngit commit --amend -m 'feat: pesan commit yang sudah diperbaiki'" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">--amend</code> akan menimpa commit terakhir Anda dengan perubahan baru dan/atau pesan baru tanpa membuat commit tambahan di riwayat.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">--amend</code> akan menimpa commit terakhir Anda dengan perubahan baru dan/atau pesan baru tanpa membuat commit tambahan di riwayat.</p>
 
               <h2 id="membatalkan-perubahan" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 11. Membatalkan Perubahan File yang Belum Di commit
@@ -348,7 +349,7 @@ export default function LearnGitPage() {
               <TerminalBlock command="git restore index.js" />
               <p>atau</p>
               <TerminalBlock command="git checkout -- index.js" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">restore</code> akan membuang semua perubahan yang belum masuk <em>staging</em> pada file tersebut dan mengembalikannya ke kondisi bersih semula.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">restore</code> akan membuang semua perubahan yang belum masuk <em>staging</em> pada file tersebut dan mengembalikannya ke kondisi bersih semula.</p>
 
               <h2 id="membatalkan commit" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 12. Membatalkan commit yang Sudah Terlanjur Dibagikan
@@ -357,7 +358,7 @@ export default function LearnGitPage() {
                 Anda sudah melakukan <em>push</em> ke server, tapi ternyata kode tersebut membuat aplikasi <em>crash</em>. Anda harus membatalkannya tanpa merusak riwayat commit teman setim.
               </p>
               <TerminalBlock command="git log --oneline\ngit revert <id commit-yang-bermasalah>\ngit push origin main" />
-              <span className="font-semibold">Penjelasan:</span> Berbeda dengan menghapus commit, <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">revert</code> membuat satu commit <em>baru</em> yang berisi kebalikan dari commit yang bermasalah. Ini adalah cara teraman untuk <em>rollback</em> kode yang sudah di-<em>push</em>.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> Berbeda dengan menghapus commit, <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">revert</code> membuat satu commit <em>baru</em> yang berisi kebalikan dari commit yang bermasalah. Ini adalah cara teraman untuk <em>rollback</em> kode yang sudah di-<em>push</em>.</p>
 
               <h2 id="hard-reset" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 13. Mereset Kode secara Ekstrem (Hard Reset)
@@ -366,7 +367,7 @@ export default function LearnGitPage() {
                 Anda sedang bekerja di <em>branch</em> eksperimental dan semua kodingan hari ini berantakan. Anda ingin membuang semuanya dan kembali ke commit tertentu di masa lalu secara permanen.
               </p>
               <TerminalBlock command="git reset --hard <id commit-tujuan>" />
-              <span className="font-semibold">Awas:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">--hard</code> sangat destruktif. Ini akan menghapus semua file dan commit yang terjadi setelah ID commit yang dituju. Gunakan hanya jika Anda yakin seratus persen.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Awas:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">--hard</code> sangat destruktif. Ini akan menghapus semua file dan commit yang terjadi setelah ID commit yang dituju. Gunakan hanya jika Anda yakin seratus persen.</p>
 
               <h2 id="konflik-merge" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 14. Menyelesaikan Konflik Penggabungan (Merge Conflict)
@@ -410,7 +411,7 @@ export default function LearnGitPage() {
               </div>
               <p>Setelah itu, kita perlu menambahkan file yang sudah diperbaiki ke <em>staging area</em> dan melakukan <em>commit</em>:</p>
               <TerminalBlock command="git add index.html\ngit commit -m 'fix: menyelesaikan konflik" />
-              <span className="font-semibold">Penjelasan:</span> Saat konflik terjadi, Git menghentikan proses <em>merge</em>. Kita harus mengedit file secara manual, menandainya sudah selesai dengan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">add</code>, lalu melanjutkan dengan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">commit</code>.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> Saat konflik terjadi, Git menghentikan proses <em>merge</em>. Kita harus mengedit file secara manual, menandainya sudah selesai dengan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">add</code>, lalu melanjutkan dengan <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">commit</code>.</p>
 
               <h2 id="cherry-pick" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 15. Mengambil Satu commit Spesifik (Cherry-Pick)
@@ -419,7 +420,7 @@ export default function LearnGitPage() {
                 Teman Anda membuat perbaikan <em>bug</em> di <em>branch</em> lain. Anda butuh perbaikan itu sekarang di <em>branch</em> Anda tanpa harus menggabungkan seluruh fitur miliknya.
               </p>
               <TerminalBlock command="git log --oneline\ngit switch branch_anda\ngit cherry-pick <id commit-teman>" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">cherry-pick</code> mengambil persis satu commit dari tempat lain dan menempelkannya (menduplikasinya) ke <em>branch</em> Anda saat ini.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">cherry-pick</code> mengambil persis satu commit dari tempat lain dan menempelkannya (menduplikasinya) ke <em>branch</em> Anda saat ini.</p>
 
               <h2 id="rebase" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 16. Merapikan Riwayat commit sebelum Merge (Rebase)
@@ -428,7 +429,7 @@ export default function LearnGitPage() {
                 Anda ingin memperbarui <em>branch</em> fitur Anda dengan perubahan terbaru dari <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">main</code>, tetapi Anda ingin riwayat commitnya tetap linier dan rapi tanpa commit <em>merge</em> yang berantakan.
               </p>
               <TerminalBlock command="git switch feature/keranjang\ngit fetch origin\ngit rebase origin/main" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">rebase</code> mengambil commit commit Anda, menyimpannya sementara, menarik versi terbaru dari <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">main</code>, lalu meletakkan kembali commit Anda satu per satu di ujung paling atas.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">rebase</code> mengambil commit commit Anda, menyimpannya sementara, menarik versi terbaru dari <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">main</code>, lalu meletakkan kembali commit Anda satu per satu di ujung paling atas.</p>
               <ImagePlaceholder caption="" src="/images/writing/rebase.png" />
 
               <h2 id="squash" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
@@ -447,7 +448,7 @@ export default function LearnGitPage() {
               <ImagePlaceholder caption="" src="/images/writing/git_squash-3.png" />
               <p>Terakhir, simpan dan tutup editor. Git akan menggabungkan commit tersebut. Sekarang Anda bisa mendorong perubahan ini ke remote:</p>
               <TerminalBlock command="git push -f origin feature/branch" />
-              <span className="font-semibold">Penjelasan:</span> <em>Interactive rebase</em> (<code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">-i</code>) memungkinkan kita memanipulasi riwayat commit (menggabungkan, menghapus, atau mengubah urutan) sebelum dipublikasikan ke <em>branch</em> utama.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <em>Interactive rebase</em> (<code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">-i</code>) memungkinkan kita memanipulasi riwayat commit (menggabungkan, menghapus, atau mengubah urutan) sebelum dipublikasikan ke <em>branch</em> utama.</p>
 
               <h2 id="blame" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 18. Mencari Tahu Siapa Penulis Baris Kode (Blame)
@@ -456,7 +457,7 @@ export default function LearnGitPage() {
                 Anda menemukan fungsi yang aneh dan menyebabkan <em>bug</em>, Anda butuh bertanya kepada orang yang menulis baris tersebut mengapa kodenya ditulis seperti itu.
               </p>
               <TerminalBlock command="git blame index.html" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">blame</code> akan menampilkan setiap baris dalam file beserta nama pembuat, tanggal, dan ID commit kapan baris tersebut terakhir kali dimodifikasi.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">blame</code> akan menampilkan setiap baris dalam file beserta nama pembuat, tanggal, dan ID commit kapan baris tersebut terakhir kali dimodifikasi.</p>
 
               <h2 id="tagging" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 19. Menandai Versi Rilis Baru (Tagging)
@@ -465,7 +466,7 @@ export default function LearnGitPage() {
                 Aplikasi Anda sudah siap diluncurkan untuk versi 2.0.0. Anda ingin memberikan penanda permanen di riwayat Git.
               </p>
               <TerminalBlock command="git tag -a v2.0.0 -m 'Release version 2.0.0'\ngit push origin v2.0.0" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">tag</code> memberikan nama pada titik commit spesifik. Berguna untuk rilis produksi dan sering digunakan oleh sistem CI/CD untuk memicu proses <em>deployment</em>.
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">tag</code> memberikan nama pada titik commit spesifik. Berguna untuk rilis produksi dan sering digunakan oleh sistem CI/CD untuk memicu proses <em>deployment</em>.</p>
 
               <h2 id="membersihkan-branch" className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white mt-16 mb-4 scroll-mt-32">
                 20. Membersihkan Branch yang Sudah Tidak Terpakai
@@ -474,7 +475,7 @@ export default function LearnGitPage() {
                 Setelah berbulan-bulan, tumpukan <em>branch</em> fitur yang sudah di-<em>merge</em> memenuhi daftar Anda. Waktunya melakukan bersih-bersih agar repositori kembali rapi.
               </p>
               <TerminalBlock command="git branch -d feature/login\ngit remote prune origin" />
-              <span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">-d</code> menghapus <em>branch</em> di komputer lokal Anda (hanya aman jika sudah di-<em>merge</em>). <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">prune</code> membersihkan referensi <em>branch remote</em> yang ternyata sudah dihapus di server (GitHub/GitLab).
+              <p className="leading-relaxed text-[15px]"><span className="font-semibold">Penjelasan:</span> <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">-d</code> menghapus <em>branch</em> di komputer lokal Anda (hanya aman jika sudah di-<em>merge</em>). <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm mx-1">prune</code> membersihkan referensi <em>branch remote</em> yang ternyata sudah dihapus di server (GitHub/GitLab).</p>
             </div>
             <div className="mt-20 pt-8 border-t border-zinc-200 dark:border-zinc-800/60">
               <h3 className="font-semibold text-lg text-zinc-900 dark:text-white mb-5">Link Terkait:</h3>
@@ -494,6 +495,11 @@ export default function LearnGitPage() {
                   </a>
                 </li>
               </ul>
+            </div>
+            <div className="mt-10 pt-4">
+              <Link href="/writing" className="text-sm font-mono text-gray-500 hover:text-black dark:hover:text-white transition-colors mb-2 w-fit">
+                &gt; cd ..
+              </Link>
             </div>
           </article>
         </main>

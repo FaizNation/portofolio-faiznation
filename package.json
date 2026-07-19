@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
+    "@base-ui/react": "^1.6.0",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
+    "@radix-ui/react-avatar": "^1.2.2",
+    "@radix-ui/react-hover-card": "^1.1.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
@@ -23,9 +26,10 @@
     "next-auth": "^4.24.13",
     "nodemailer": "^7.0.13",
     "pg": "^8.17.2",
+    "qss": "^3.0.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -1,5 +1,35 @@
 [
     {
+        "title": "MindBalance",
+        "description": "AI-based web platform for monitoring mental health.",
+        "tags": [
+            "AI",
+            "React Vite",
+            "Gemini API",
+            "Mysql",
+            "Express JS"
+        ],
+        "year": "2026",
+        "images": [
+            "img/project/mindbalance/1.png",
+            "img/project/mindbalance/2.png",
+            "img/project/mindbalance/3.png",
+            "img/project/mindbalance/4.png",
+            "img/project/mindbalance/5.png",
+            "img/project/mindbalance/6.png",
+            "img/project/mindbalance/7.png",
+            "img/project/mindbalance/8.png",
+            "img/project/mindbalance/20.png",
+            "img/project/mindbalance/21.png",
+            "img/project/mindbalance/22.png"
+        ],
+        "links": {
+            "demo": "https://mindbalance-pi.vercel.app/",
+            "figma": "https://www.figma.com/design/coyRthhd9Qa1gikoYCVFNN/MindBalance?node-id=0-1&t=ALiM8MFtfc6lTLye-1",
+            "github": "https://github.com/Renggars/capstone"
+        }
+    },
+    {
         "title": "Unified",
         "description": "Navigating Financial Milestones, Together.",
         "tags": [
@@ -30,22 +60,7 @@
         "description": "A website to find kost around campus, project from Diginesa",
         "tags": [
             "Flutter",
-            "Dart"
-        ],
-        "year": "2025",
-        "images": [
-            "img/project/kos-finder/kos-finder-priview-1.png",
-            "img/project/kos-finder/kos-finder-priview-2.png",
-            "img/project/kos-finder/kos-finder-priview-3.png"
-        ],
-        "links": {
-            "demo": "https://kos.diginesa.com/"
-        }
-    },
-    {
-        "title": "Kost Finder UI/UX",
-        "description": "A UI/UX design for a website to find kost around campus, project from Diginesa",
-        "tags": [
+            "Dart",
             "Figma",
             "UI/UX"
         ],
@@ -56,6 +71,7 @@
             "img/project/kos-finder/kos-finder-priview-3.png"
         ],
         "links": {
+            "demo": "https://kos.diginesa.com/",
             "figma": "https://www.figma.com/design/3qSxSUOqpXs10tJprbvrge/Kost-Finder?node-id=0-1&t=oQaAVCQsn7UvSe27-1"
         }
     },
