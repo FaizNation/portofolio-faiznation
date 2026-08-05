@@ -1,7 +1,74 @@
 [
   {
+    "slug": "jax-community-day-2026",
+    "title": "Jax Community Day",
+    "year": "2026",
+    "items": [
+      {
+        "src": "https://drive.google.com/uc?export=view&id=18spaO_Bo7oxRb9IZ18FUF3LjblfHXZ5v",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1fxke4mlKprQyjzXR7SalH6_wROEkyRNP",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1Uq5_tmfQCDnlRBH77bpGpbZNFvhXb8oG",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1TbmM3mqVdp35jTHONtueMLdG-pPc2B-r",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1t2vNB4WsAN0zQcIW1Be0s5QK9KsOhzSR",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1_ajGFRdzgHMn_iIzoUOdW6FtCedUNJvd",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=12gW1imCkbez1_Tj17c89hx5-CPCkCokD",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1hc1gC0bR1BBU-_P7pbefa6rlm6eLt5Ur",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=170uvX0fif5PXSq7fOjnDQ6QfdnO_OG7W",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1qVXbQOS7i2SJW-xamzGjprP5-p4LxqYE",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1ouUtMx0bj6v6w12lyPgoShoJjS567qrf",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      },
+      {
+        "src": "https://drive.google.com/uc?export=view&id=1v2O11FmwUIqqmyDDp6UNTZ7gMYWM6e_-",
+        "alt": "Jax Community Day 2026",
+        "caption": "Jax Community Day 2026"
+      }
+    ]
+  },
+  {
     "slug": "bwai-gdg-sby-2026",
-    "title": "Build with AI Surabaya 2026",
+    "title": "Build with AI Surabaya",
     "year": "2026",
     "items": [
       {
@@ -55,7 +122,7 @@
   },
   {
     "slug": "scalecon-ai-surabaya",
-    "title": "Scalecon AI Surabaya 2026",
+    "title": "Scalecon AI Surabaya",
     "year": "2026",
     "items": [
       {
@@ -143,7 +210,7 @@
   },
   {
     "slug": "bwai-gdgcloud-sby-2026",
-    "title": "Build with AI Cloud Surabaya 2026",
+    "title": "Build with AI Cloud Surabaya",
     "year": "2026",
     "items": [
       {
@@ -266,7 +333,7 @@
   },
   {
     "slug": "flutter-fusion-conference-2026",
-    "title": "Flutter Fusion Conference 2026",
+    "title": "Flutter Fusion Conference",
     "year": "2026",
     "items": [
       {
@@ -325,7 +392,7 @@
   },
   {
     "slug": "recode-2026",
-    "title": "Re:Code 2026",
+    "title": "Re:Code",
     "year": "2026",
     "items": [
       {
@@ -382,7 +449,7 @@
   },
   {
     "slug": "devfest-jogjakarta-2025",
-    "title": "Devfest Jogjakarta 2025",
+    "title": "Devfest Jogjakarta",
     "year": "2025",
     "items": [
       {
@@ -440,7 +507,7 @@
   },
   {
     "slug": "devfest-semarang-2025",
-    "title": "Devfest Semarang 2025",
+    "title": "Devfest Semarang",
     "year": "2025",
     "items": [
       {
@@ -497,7 +564,7 @@
   },
   {
     "slug": "pingfest-2025",
-    "title": "Pingfest 2025",
+    "title": "Pingfest",
     "year": "2025",
     "items": [
       {

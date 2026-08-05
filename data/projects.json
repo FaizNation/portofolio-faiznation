@@ -6,8 +6,7 @@
             "AI",
             "React Vite",
             "Gemini API",
-            "Mysql",
-            "Express JS"
+            "Express"
         ],
         "year": "2026",
         "images": [
@@ -109,21 +108,6 @@
         "links": {
             "github": "https://github.com/FaizNation/mango",
             "demo": "https://dashboard-demo.com"
-        }
-    },
-    {
-        "title": "ShariaEconomy.ID",
-        "description": "This website is the result of a midterm project for the Islamic Education.",
-        "tags": [
-            "Bootstrap",
-            "HTML",
-            "CSS",
-            "JS"
-        ],
-        "year": "2025",
-        "links": {
-            "github": "https://github.com/FaizNation/Ekonomi-Islam",
-            "demo": "https://shariaeconomy.vercel.app/"
         }
     }
 ]
