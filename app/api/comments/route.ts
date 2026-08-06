@@ -121,6 +121,29 @@ export async function POST(req: Request) {
             parentIsVerified = newComment.parent.user.email === ownerEmail;
         }
 
+        // Check if the comment is a reply and should notify the parent comment's author
+        if (parentId && newComment.parent && newComment.parent.user.email) {
+            const parentEmail = newComment.parent.user.email;
+            const parentName = newComment.parent.user.name || "Anonymous";
+            const replierName = newComment.user.name || "Anonymous";
+            const replierEmail = newComment.user.email;
+
+            // Only notify if replying to someone else's comment
+            if (parentEmail !== replierEmail) {
+                const { sendReplyNotificationEmail } = await import("@/lib/email");
+                try {
+                    await sendReplyNotificationEmail({
+                        toEmail: parentEmail,
+                        parentName,
+                        replierName,
+                        replyContent: content.trim(),
+                    });
+                } catch (emailError) {
+                    console.error("Failed to send reply notification email:", emailError);
+                }
+            }
+        }
+
         const processedNewComment = {
             ...newComment,
             user: {
