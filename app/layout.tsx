@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import ChatWidget from "../components/ChatWidget";
 import SessionProvider from "../components/SessionProvider";
 import NetworkStatusAlert from "../components/NetworkStatusAlert";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({
             <Footer />
             <ChatWidget />
             <NetworkStatusAlert />
+            <Analytics />
           </ClientLayout>
         </SessionProvider>
       </body>
