@@ -10,17 +10,17 @@
         ],
         "year": "2026",
         "images": [
-            "img/project/mindbalance/1.png",
-            "img/project/mindbalance/2.png",
-            "img/project/mindbalance/3.png",
-            "img/project/mindbalance/4.png",
-            "img/project/mindbalance/5.png",
-            "img/project/mindbalance/6.png",
-            "img/project/mindbalance/7.png",
-            "img/project/mindbalance/8.png",
-            "img/project/mindbalance/20.png",
-            "img/project/mindbalance/21.png",
-            "img/project/mindbalance/22.png"
+            "img/project/mindbalance/1.webp",
+            "img/project/mindbalance/2.webp",
+            "img/project/mindbalance/3.webp",
+            "img/project/mindbalance/4.webp",
+            "img/project/mindbalance/5.webp",
+            "img/project/mindbalance/6.webp",
+            "img/project/mindbalance/7.webp",
+            "img/project/mindbalance/8.webp",
+            "img/project/mindbalance/20.webp",
+            "img/project/mindbalance/21.webp",
+            "img/project/mindbalance/22.webp"
         ],
         "links": {
             "demo": "https://mindbalance-pi.vercel.app/",
@@ -38,16 +38,16 @@
         ],
         "year": "2026",
         "images": [
-            "img/project/unified/1.png",
-            "img/project/unified/2.jpg",
-            "img/project/unified/3.jpg",
-            "img/project/unified/4.jpg",
-            "img/project/unified/5.png",
-            "img/project/unified/6.jpg",
-            "img/project/unified/7.jpg",
-            "img/project/unified/8.jpg",
-            "img/project/unified/9.jpg",
-            "img/project/unified/10.jpg"
+            "img/project/unified/1.webp",
+            "img/project/unified/2.webp",
+            "img/project/unified/3.webp",
+            "img/project/unified/4.webp",
+            "img/project/unified/5.webp",
+            "img/project/unified/6.webp",
+            "img/project/unified/7.webp",
+            "img/project/unified/8.webp",
+            "img/project/unified/9.webp",
+            "img/project/unified/10.webp"
         ],
         "links": {
             "demo": "https://ournation.cloud/unified.html",
@@ -65,9 +65,9 @@
         ],
         "year": "2025",
         "images": [
-            "img/project/kos-finder/kos-finder-priview-1.png",
-            "img/project/kos-finder/kos-finder-priview-2.png",
-            "img/project/kos-finder/kos-finder-priview-3.png"
+            "img/project/kos-finder/kos-finder-priview-1.webp",
+            "img/project/kos-finder/kos-finder-priview-2.webp",
+            "img/project/kos-finder/kos-finder-priview-3.webp"
         ],
         "links": {
             "demo": "https://kos.diginesa.com/",
@@ -101,9 +101,9 @@
         ],
         "year": "2025",
         "images": [
-            "img/project/mango/mango-priview-1.png",
-            "img/project/mango/mango-priview-2.png",
-            "img/project/mango/mango-priview-3.png"
+            "img/project/mango/mango-priview-1.webp",
+            "img/project/mango/mango-priview-2.webp",
+            "img/project/mango/mango-priview-3.webp"
         ],
         "links": {
             "github": "https://github.com/FaizNation/mango",

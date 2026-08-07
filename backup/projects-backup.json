@@ -1,0 +1,40 @@
+[
+    {
+        "title": "Safe Bite",
+        "description": "AI-powered mobile food safety laboratory.",
+        "tags": [
+            "Flutter",
+            "Dart",
+            "Gemini API"
+        ],
+        "year": "2026",
+        "images": [
+            "img/project/safe-bite/Frame 1.png",
+            "img/project/safe-bite/Frame 2.png",
+            "img/project/safe-bite/Frame 3.png",
+            "img/project/safe-bite/Frame 4.png",
+            "img/project/safe-bite/Frame 5.png",
+            "img/project/safe-bite/Frame 6.png",
+            "img/project/safe-bite/Frame 7.png",
+            "img/project/safe-bite/Frame 8.png"
+        ],
+        "links": {
+            "github": "https://github.com/FaizNation/safe_bite"
+        }
+    },
+    {
+        "title": "ShariaEconomy.ID",
+        "description": "This website is the result of a midterm project for the Islamic Education.",
+        "tags": [
+            "Bootstrap",
+            "HTML",
+            "CSS",
+            "JS"
+        ],
+        "year": "2025",
+        "links": {
+            "github": "https://github.com/FaizNation/Ekonomi-Islam",
+            "demo": "https://shariaeconomy.vercel.app/"
+        }
+    }
+]
