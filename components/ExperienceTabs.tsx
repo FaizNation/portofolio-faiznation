@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import experienceDataRaw from "@/data/experiences.json";
 
-type Category = "Work" | "Education";
+type Category = "Experience" | "Education";
 
-const tabs: Category[] = ["Work", "Education"];
+const tabs: Category[] = ["Experience", "Education"];
 
 interface Role {
     title: string;
@@ -25,7 +25,7 @@ interface ExperienceItem {
 const experienceData: Record<Category, ExperienceItem[]> = experienceDataRaw as Record<Category, ExperienceItem[]>;
 
 export default function ExperienceTabs() {
-    const [activeTab, setActiveTab] = useState<Category>("Work");
+    const [activeTab, setActiveTab] = useState<Category>("Experience");
 
     return (
         <div className="flex flex-col gap-4 w-full">

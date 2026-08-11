@@ -1,9 +1,24 @@
 {
-  "Work": [
+  "Experience": [
+    {
+      "organization": "Coding Camp powered by DBS Foundation",
+      "location": "Remote",
+      "period": "Feb 2026 - Jul 2026",
+      "companyDescription": "A free, online, intensive information technology training scholarship program initiated by the DBS Foundation in collaboration with the developer platform Dicoding.",
+      "roles": [
+        {
+          "title": "Full-Stack Web Developer Cohort",
+          "responsibilities": [
+            "Graduated with “Full Graduated” honors from a comprehensive independent study program, selected as one of 2,800 participants out of a total of 70,000 applicants from 364 universities across Indonesia.",
+            "Developed and implemented a capstone project titled MindBalance, an AI-based system for predicting stress levels and providing lifestyle recommendations centered on the theme of “Healthy Lives & Well-being.”"
+          ]
+        }
+      ]
+    },
     {
       "organization": "Diginesa",
-      "location": "Magetan, Jawa Timur (Remote)",
-      "period": "2025 - Present",
+      "location": "Surabaya, Indonesia",
+      "period": "Apr 2025 - May 2026",
       "companyDescription": "Diginesa is a digital transformation platform that offers innovative solutions and digital education to accelerate technological advancement in Indonesia. .",
       "roles": [
         {
