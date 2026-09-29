@@ -10,9 +10,16 @@ interface GalleryItem {
   span?: string;
 }
 
+interface GalleryAlbum {
+  slug: string;
+  title: string;
+  year: string;
+  items: GalleryItem[];
+}
+
 export default async function GalleryDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const album = galleryData.find((item) => item.slug === slug);
+  const album = (galleryData as GalleryAlbum[]).find((item) => item.slug === slug);
 
   if (!album) {
     return notFound();

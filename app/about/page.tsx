@@ -18,7 +18,7 @@ export default function About() {
         <div className="flex flex-col gap-6 text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
           <p>
             Okay, let's do this one last time. For real this time. My name is Fadly Faiz Fajarruddin.
-            I was born in karanganyar, Central Java, and I'm a 19 year old. I am a student at the {" "}
+            I was born in karanganyar, Central Java, and I'm a 20 year old. I am a student at the {" "}
             <HoverCard>
               <HoverCardTrigger
                 href="https://unesa.ac.id/"
@@ -56,7 +56,7 @@ export default function About() {
             , majoring in Informatics Engineering.
           </p>
           <p>
-            I focus on UI/UX Design and Frontend Development. I am a person who is passionate about technology and always curious to learn new things. I am also a person who is responsible and always tries to do my best in everything I do.
+            I focus on Software Development. I am a person who is passionate about technology and always curious to learn new things. I am also a person who is responsible and always tries to do my best in everything I do.
           </p>
           <p>
             Curious about my full professional journey? Take a look at my <a href="/curriculum-vitae_fadly-fais-fajarruddin.pdf" target="_blank" rel="noopener noreferrer" className="underline decoration-dashed hover:decoration-solid underline-offset-4 decoration-1 text-black dark:text-white transition-colors">career</a>.
